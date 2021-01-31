@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		57B73DC325C554260074B543 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 57B73DC225C554260074B543 /* AppDelegate.m */; };
-		57B73DC925C554260074B543 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 57B73DC825C554260074B543 /* ViewController.m */; };
 		57B73DCC25C554260074B543 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 57B73DCA25C554260074B543 /* Main.storyboard */; };
 		57B73DCE25C554270074B543 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 57B73DCD25C554270074B543 /* Assets.xcassets */; };
 		57B73DD125C554270074B543 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 57B73DCF25C554270074B543 /* LaunchScreen.storyboard */; };
@@ -16,6 +15,7 @@
 		57B73DDE25C554270074B543 /* CityMiTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 57B73DDD25C554270074B543 /* CityMiTests.m */; };
 		57B73DE925C554270074B543 /* CityMiUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 57B73DE825C554270074B543 /* CityMiUITests.m */; };
 		57B73E3825C699980074B543 /* MiLaunchImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 57B73E3725C699980074B543 /* MiLaunchImage.png */; };
+		57B73E3E25C6A0650074B543 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 57B73E3D25C6A0650074B543 /* HomeViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -39,8 +39,6 @@
 		57B73DBE25C554260074B543 /* CityMi.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CityMi.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		57B73DC125C554260074B543 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		57B73DC225C554260074B543 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		57B73DC725C554260074B543 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		57B73DC825C554260074B543 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		57B73DCB25C554260074B543 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		57B73DCD25C554270074B543 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		57B73DD025C554270074B543 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -53,6 +51,9 @@
 		57B73DE825C554270074B543 /* CityMiUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CityMiUITests.m; sourceTree = "<group>"; };
 		57B73DEA25C554270074B543 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		57B73E3725C699980074B543 /* MiLaunchImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MiLaunchImage.png; sourceTree = "<group>"; };
+		57B73E3C25C6A0650074B543 /* HomeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = HomeViewController.h; path = ../../../../../TreeIsCold/HomeViewController.h; sourceTree = "<group>"; };
+		57B73E3D25C6A0650074B543 /* HomeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = HomeViewController.m; path = ../../../../../TreeIsCold/HomeViewController.m; sourceTree = "<group>"; };
+		57B73E5925C6AB850074B543 /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -135,6 +136,7 @@
 			children = (
 				57B73E3725C699980074B543 /* MiLaunchImage.png */,
 				57B73DD225C554270074B543 /* Info.plist */,
+				57B73E5925C6AB850074B543 /* PrefixHeader.pch */,
 			);
 			path = "Supporting Files";
 			sourceTree = "<group>";
@@ -175,8 +177,8 @@
 		57B73E2F25C696F20074B543 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				57B73DC725C554260074B543 /* ViewController.h */,
-				57B73DC825C554260074B543 /* ViewController.m */,
+				57B73E3C25C6A0650074B543 /* HomeViewController.h */,
+				57B73E3D25C6A0650074B543 /* HomeViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -321,9 +323,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				57B73DC925C554260074B543 /* ViewController.m in Sources */,
 				57B73DC325C554260074B543 /* AppDelegate.m in Sources */,
 				57B73DD425C554270074B543 /* main.m in Sources */,
+				57B73E3E25C6A0650074B543 /* HomeViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -497,6 +499,8 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = J7DR2LJWWJ;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SRCROOT)/CityMi/Supporting Files/PrefixHeader.pch";
 				INFOPLIST_FILE = "CityMi/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -515,6 +519,8 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = J7DR2LJWWJ;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SRCROOT)/CityMi/Supporting Files/PrefixHeader.pch";
 				INFOPLIST_FILE = "CityMi/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
