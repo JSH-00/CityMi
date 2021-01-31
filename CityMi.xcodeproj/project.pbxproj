@@ -101,15 +101,11 @@
 		57B73DC025C554260074B543 /* CityMi */ = {
 			isa = PBXGroup;
 			children = (
-				57B73DC125C554260074B543 /* AppDelegate.h */,
-				57B73DC225C554260074B543 /* AppDelegate.m */,
-				57B73DC725C554260074B543 /* ViewController.h */,
-				57B73DC825C554260074B543 /* ViewController.m */,
+				57B73E2B25C696B80074B543 /* Classes */,
+				57B73E2A25C6969E0074B543 /* Supporting Files */,
 				57B73DCA25C554260074B543 /* Main.storyboard */,
 				57B73DCD25C554270074B543 /* Assets.xcassets */,
 				57B73DCF25C554270074B543 /* LaunchScreen.storyboard */,
-				57B73DD225C554270074B543 /* Info.plist */,
-				57B73DD325C554270074B543 /* main.m */,
 			);
 			path = CityMi;
 			sourceTree = "<group>";
@@ -130,6 +126,66 @@
 				57B73DEA25C554270074B543 /* Info.plist */,
 			);
 			path = CityMiUITests;
+			sourceTree = "<group>";
+		};
+		57B73E2A25C6969E0074B543 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				57B73DD225C554270074B543 /* Info.plist */,
+			);
+			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		57B73E2B25C696B80074B543 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				57B73E3025C6971C0074B543 /* Other */,
+				57B73E2C25C696D20074B543 /* Main */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		57B73E2C25C696D20074B543 /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				57B73E2F25C696F20074B543 /* Controller */,
+				57B73E2E25C696EB0074B543 /* View */,
+				57B73E2D25C696E20074B543 /* Model */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
+		57B73E2D25C696E20074B543 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		57B73E2E25C696EB0074B543 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		57B73E2F25C696F20074B543 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				57B73DC725C554260074B543 /* ViewController.h */,
+				57B73DC825C554260074B543 /* ViewController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		57B73E3025C6971C0074B543 /* Other */ = {
+			isa = PBXGroup;
+			children = (
+				57B73DC125C554260074B543 /* AppDelegate.h */,
+				57B73DC225C554260074B543 /* AppDelegate.m */,
+				57B73DD325C554270074B543 /* main.m */,
+			);
+			path = Other;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -437,7 +493,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = J7DR2LJWWJ;
-				INFOPLIST_FILE = CityMi/Info.plist;
+				INFOPLIST_FILE = "CityMi/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -455,7 +511,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = J7DR2LJWWJ;
-				INFOPLIST_FILE = CityMi/Info.plist;
+				INFOPLIST_FILE = "CityMi/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
