@@ -15,6 +15,7 @@
 		57B73DD425C554270074B543 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 57B73DD325C554270074B543 /* main.m */; };
 		57B73DDE25C554270074B543 /* CityMiTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 57B73DDD25C554270074B543 /* CityMiTests.m */; };
 		57B73DE925C554270074B543 /* CityMiUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 57B73DE825C554270074B543 /* CityMiUITests.m */; };
+		57B73E3825C699980074B543 /* MiLaunchImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 57B73E3725C699980074B543 /* MiLaunchImage.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +52,7 @@
 		57B73DE425C554270074B543 /* CityMiUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CityMiUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		57B73DE825C554270074B543 /* CityMiUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CityMiUITests.m; sourceTree = "<group>"; };
 		57B73DEA25C554270074B543 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		57B73E3725C699980074B543 /* MiLaunchImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MiLaunchImage.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -131,6 +133,7 @@
 		57B73E2A25C6969E0074B543 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				57B73E3725C699980074B543 /* MiLaunchImage.png */,
 				57B73DD225C554270074B543 /* Info.plist */,
 			);
 			path = "Supporting Files";
@@ -290,6 +293,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				57B73E3825C699980074B543 /* MiLaunchImage.png in Resources */,
 				57B73DD125C554270074B543 /* LaunchScreen.storyboard in Resources */,
 				57B73DCE25C554270074B543 /* Assets.xcassets in Resources */,
 				57B73DCC25C554260074B543 /* Main.storyboard in Resources */,
