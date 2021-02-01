@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2179E83725C7CB4F00246877 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2179E83625C7CB4F00246877 /* HomeViewController.m */; };
+		2179E85D25C7FBDC00246877 /* MiRecommendCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2179E85C25C7FBDC00246877 /* MiRecommendCell.m */; };
 		57B73DC325C554260074B543 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 57B73DC225C554260074B543 /* AppDelegate.m */; };
 		57B73DCC25C554260074B543 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 57B73DCA25C554260074B543 /* Main.storyboard */; };
 		57B73DCE25C554270074B543 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 57B73DCD25C554270074B543 /* Assets.xcassets */; };
@@ -15,7 +17,6 @@
 		57B73DDE25C554270074B543 /* CityMiTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 57B73DDD25C554270074B543 /* CityMiTests.m */; };
 		57B73DE925C554270074B543 /* CityMiUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 57B73DE825C554270074B543 /* CityMiUITests.m */; };
 		57B73E3825C699980074B543 /* MiLaunchImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 57B73E3725C699980074B543 /* MiLaunchImage.png */; };
-		57B73E3E25C6A0650074B543 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 57B73E3D25C6A0650074B543 /* HomeViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,6 +37,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2179E83525C7CB4F00246877 /* HomeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HomeViewController.h; sourceTree = "<group>"; };
+		2179E83625C7CB4F00246877 /* HomeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HomeViewController.m; sourceTree = "<group>"; };
+		2179E85B25C7FBDC00246877 /* MiRecommendCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MiRecommendCell.h; sourceTree = "<group>"; };
+		2179E85C25C7FBDC00246877 /* MiRecommendCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MiRecommendCell.m; sourceTree = "<group>"; };
 		57B73DBE25C554260074B543 /* CityMi.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CityMi.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		57B73DC125C554260074B543 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		57B73DC225C554260074B543 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -51,8 +56,6 @@
 		57B73DE825C554270074B543 /* CityMiUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CityMiUITests.m; sourceTree = "<group>"; };
 		57B73DEA25C554270074B543 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		57B73E3725C699980074B543 /* MiLaunchImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MiLaunchImage.png; sourceTree = "<group>"; };
-		57B73E3C25C6A0650074B543 /* HomeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = HomeViewController.h; path = ../../../../../TreeIsCold/HomeViewController.h; sourceTree = "<group>"; };
-		57B73E3D25C6A0650074B543 /* HomeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = HomeViewController.m; path = ../../../../../TreeIsCold/HomeViewController.m; sourceTree = "<group>"; };
 		57B73E5925C6AB850074B543 /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -81,6 +84,42 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2179E83F25C7CCAD00246877 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				2179E84025C7CCAD00246877 /* Controller */,
+				2179E84125C7CCAD00246877 /* Model */,
+				2179E84225C7CCAD00246877 /* View */,
+			);
+			name = Home;
+			path = CityMi/Classes/Home;
+			sourceTree = SOURCE_ROOT;
+		};
+		2179E84025C7CCAD00246877 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				2179E83525C7CB4F00246877 /* HomeViewController.h */,
+				2179E83625C7CB4F00246877 /* HomeViewController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		2179E84125C7CCAD00246877 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		2179E84225C7CCAD00246877 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				2179E85B25C7FBDC00246877 /* MiRecommendCell.h */,
+				2179E85C25C7FBDC00246877 /* MiRecommendCell.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		57B73DB525C554250074B543 = {
 			isa = PBXGroup;
 			children = (
@@ -144,43 +183,10 @@
 		57B73E2B25C696B80074B543 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				2179E83F25C7CCAD00246877 /* Home */,
 				57B73E3025C6971C0074B543 /* Other */,
-				57B73E2C25C696D20074B543 /* Main */,
 			);
 			path = Classes;
-			sourceTree = "<group>";
-		};
-		57B73E2C25C696D20074B543 /* Main */ = {
-			isa = PBXGroup;
-			children = (
-				57B73E2F25C696F20074B543 /* Controller */,
-				57B73E2E25C696EB0074B543 /* View */,
-				57B73E2D25C696E20074B543 /* Model */,
-			);
-			path = Main;
-			sourceTree = "<group>";
-		};
-		57B73E2D25C696E20074B543 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
-		57B73E2E25C696EB0074B543 /* View */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
-		57B73E2F25C696F20074B543 /* Controller */ = {
-			isa = PBXGroup;
-			children = (
-				57B73E3C25C6A0650074B543 /* HomeViewController.h */,
-				57B73E3D25C6A0650074B543 /* HomeViewController.m */,
-			);
-			path = Controller;
 			sourceTree = "<group>";
 		};
 		57B73E3025C6971C0074B543 /* Other */ = {
@@ -323,9 +329,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2179E85D25C7FBDC00246877 /* MiRecommendCell.m in Sources */,
 				57B73DC325C554260074B543 /* AppDelegate.m in Sources */,
 				57B73DD425C554270074B543 /* main.m in Sources */,
-				57B73E3E25C6A0650074B543 /* HomeViewController.m in Sources */,
+				2179E83725C7CB4F00246877 /* HomeViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
