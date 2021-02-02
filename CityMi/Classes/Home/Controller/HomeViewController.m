@@ -7,6 +7,7 @@
 
 #import "HomeViewController.h"
 #import "MiRecommendCell.h"
+#import "MiHomeCellModel.h"
 @interface HomeViewController () <UITableViewDataSource, UITableViewDelegate>
 @property (nonatomic, weak) UISegmentedControl *titleView;
 //推荐View
@@ -85,9 +86,16 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    MiRecommendCell *cell = [MiRecommendCell new];
+    static NSString *ID = @"recommendCell";
+    MiRecommendCell *cell = [tableView dequeueReusableCellWithIdentifier:ID];
+    if (cell == nil) {
+        cell = [[MiRecommendCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:ID];
+    }
     return cell;
-    
+}
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 220;
 }
 
 @end
