@@ -16,4 +16,8 @@
 #define MiAppHeight ([UIScreen mainScreen].bounds.size.height)
 //app的宽度
 #define MiAppWidth ([UIScreen mainScreen].bounds.size.width)
+//推荐cell的高度
+#define MiHomeCellHeight 210.0
+//推荐headView的高度
+#define MiHeadViewHeight 60.0
 #endif /* PrefixHeader_pch */

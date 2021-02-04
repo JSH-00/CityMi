@@ -8,5 +8,9 @@
 #import "MiHomeCellModel.h"
 
 @implementation MiHomeCellModel
-
++ (instancetype)cellModelWithDict:(NSDictionary *)dict {
+    MiHomeCellModel *model = [[self alloc]init];
+    [model setValuesForKeysWithDictionary:dict];
+    return model;
+}
 @end

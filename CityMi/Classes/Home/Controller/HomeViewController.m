@@ -7,11 +7,14 @@
 
 #import "HomeViewController.h"
 #import "MiRecommendCell.h"
+#import "MiHomeHeadView.h"
 #import "MiHomeCellModel.h"
+#import "MiHomeRcmdModel.h"
 @interface HomeViewController () <UITableViewDataSource, UITableViewDelegate>
 @property (nonatomic, weak) UISegmentedControl *titleView;
 //推荐View
 @property (nonatomic, strong) UITableView *rmedView;
+@property (nonatomic, strong) NSMutableArray *homeDatas;
 @property (nonatomic, strong) UIImageView *nearImageView;
 @end
 
@@ -56,7 +59,7 @@
 - (void)setUpUI {
     //设置背景色
     [self.view setBackgroundColor:MiColor(51, 52, 53)];
-    UITableView *tableV = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, MiAppWidth, MiAppHeight - 64) style:UITableViewStylePlain];
+    UITableView *tableV = [[UITableView alloc] initWithFrame:CGRectMake(0, 95, MiAppWidth, MiAppHeight - 95) style:UITableViewStylePlain];
     self.rmedView = tableV;
     self.rmedView.delegate = self;
     self.rmedView.dataSource = self;
@@ -66,6 +69,18 @@
     self.nearImageView = [[UIImageView alloc] initWithFrame:self.view.bounds];
     [self.nearImageView setImage:[UIImage imageNamed:@"wnxBG"]];
     [self.nearImageView setContentMode:UIViewContentModeScaleAspectFill];
+}
+
+- (NSMutableArray *)homeDatas {
+    if (_homeDatas == nil) {
+        _homeDatas = [[NSMutableArray alloc]init];
+        NSArray *tmpArr = [[NSArray alloc] initWithContentsOfFile:[[NSBundle mainBundle]pathForResource:@"HomeDatas" ofType:@"plist"]];
+        for (NSDictionary *dict in tmpArr) {
+            MiHomeRcmdModel *homeModel = [[MiHomeRcmdModel alloc]initHomeHeadModelWithDictionary:dict];
+            [_homeDatas addObject:homeModel];
+        }
+    }
+    return _homeDatas;
 }
 
 #pragma mark - titleViewAction
@@ -82,9 +97,15 @@
     }
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 3;
+    MiHomeRcmdModel *model = self.homeDatas[section];
+    return model.body.count;
 }
 
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return self.homeDatas.count;
+}
+
+// 加载cell
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     static NSString *ID = @"recommendCell";
     MiRecommendCell *cell = [tableView dequeueReusableCellWithIdentifier:ID];
@@ -95,7 +116,16 @@
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 220;
+    return MiHomeCellHeight;
 }
 
+-(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+    MiHomeRcmdModel *homeModel = self.homeDatas[section];
+    MiHomeHeadView *headView = [[MiHomeHeadView alloc]initWithHomeRcmdMode:homeModel];;
+    return headView;
+}
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    return MiHeadViewHeight;
+}
 @end

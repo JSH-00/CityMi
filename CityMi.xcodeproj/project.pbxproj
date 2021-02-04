@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -11,6 +11,9 @@
 		2179E83725C7CB4F00246877 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2179E83625C7CB4F00246877 /* HomeViewController.m */; };
 		2179E85D25C7FBDC00246877 /* MiRecommendCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2179E85C25C7FBDC00246877 /* MiRecommendCell.m */; };
 		2179E91D25C9230A00246877 /* MiHomeCellModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2179E91C25C9230A00246877 /* MiHomeCellModel.m */; };
+		2179E92D25C9502800246877 /* MiHomeRcmdModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2179E92C25C9502800246877 /* MiHomeRcmdModel.m */; };
+		2179E93325C9505E00246877 /* MiHomeHeadView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2179E93225C9505E00246877 /* MiHomeHeadView.m */; };
+		2179E95125CAA41000246877 /* HomeDatas.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2179E95025CAA41000246877 /* HomeDatas.plist */; };
 		57B73DC325C554260074B543 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 57B73DC225C554260074B543 /* AppDelegate.m */; };
 		57B73DCC25C554260074B543 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 57B73DCA25C554260074B543 /* Main.storyboard */; };
 		57B73DCE25C554270074B543 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 57B73DCD25C554270074B543 /* Assets.xcassets */; };
@@ -49,6 +52,11 @@
 		2179E85C25C7FBDC00246877 /* MiRecommendCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MiRecommendCell.m; sourceTree = "<group>"; };
 		2179E91B25C9230A00246877 /* MiHomeCellModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MiHomeCellModel.h; sourceTree = "<group>"; };
 		2179E91C25C9230A00246877 /* MiHomeCellModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MiHomeCellModel.m; sourceTree = "<group>"; };
+		2179E92B25C9502800246877 /* MiHomeRcmdModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MiHomeRcmdModel.h; sourceTree = "<group>"; };
+		2179E92C25C9502800246877 /* MiHomeRcmdModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MiHomeRcmdModel.m; sourceTree = "<group>"; };
+		2179E93125C9505E00246877 /* MiHomeHeadView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MiHomeHeadView.h; sourceTree = "<group>"; };
+		2179E93225C9505E00246877 /* MiHomeHeadView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MiHomeHeadView.m; sourceTree = "<group>"; };
+		2179E95025CAA41000246877 /* HomeDatas.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = HomeDatas.plist; sourceTree = "<group>"; };
 		3CF7C0AB269FF19140B91E62 /* Pods_CityMiTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CityMiTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		57B73DBE25C554260074B543 /* CityMi.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CityMi.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		57B73DC125C554260074B543 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -137,6 +145,8 @@
 			children = (
 				2179E91B25C9230A00246877 /* MiHomeCellModel.h */,
 				2179E91C25C9230A00246877 /* MiHomeCellModel.m */,
+				2179E92B25C9502800246877 /* MiHomeRcmdModel.h */,
+				2179E92C25C9502800246877 /* MiHomeRcmdModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -146,8 +156,18 @@
 			children = (
 				2179E85B25C7FBDC00246877 /* MiRecommendCell.h */,
 				2179E85C25C7FBDC00246877 /* MiRecommendCell.m */,
+				2179E93125C9505E00246877 /* MiHomeHeadView.h */,
+				2179E93225C9505E00246877 /* MiHomeHeadView.m */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		2179E94725CAA31400246877 /* CustomPlist */ = {
+			isa = PBXGroup;
+			children = (
+				2179E95025CAA41000246877 /* HomeDatas.plist */,
+			);
+			path = CustomPlist;
 			sourceTree = "<group>";
 		};
 		57B73DB525C554250074B543 = {
@@ -215,6 +235,7 @@
 		57B73E2B25C696B80074B543 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				2179E94725CAA31400246877 /* CustomPlist */,
 				2179E83F25C7CCAD00246877 /* Home */,
 				57B73E3025C6971C0074B543 /* Other */,
 			);
@@ -241,7 +262,6 @@
 				C254E3D9150A235FC4140EE9 /* Pods-CityMiTests.debug.xcconfig */,
 				EB7CB1EC94CE972F8B26B68C /* Pods-CityMiTests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -355,6 +375,7 @@
 				57B73E3825C699980074B543 /* MiLaunchImage.png in Resources */,
 				57B73DD125C554270074B543 /* LaunchScreen.storyboard in Resources */,
 				57B73DCE25C554270074B543 /* Assets.xcassets in Resources */,
+				2179E95125CAA41000246877 /* HomeDatas.plist in Resources */,
 				57B73DCC25C554260074B543 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -487,6 +508,8 @@
 				57B73DC325C554260074B543 /* AppDelegate.m in Sources */,
 				2179E91D25C9230A00246877 /* MiHomeCellModel.m in Sources */,
 				57B73DD425C554270074B543 /* main.m in Sources */,
+				2179E92D25C9502800246877 /* MiHomeRcmdModel.m in Sources */,
+				2179E93325C9505E00246877 /* MiHomeHeadView.m in Sources */,
 				2179E83725C7CB4F00246877 /* HomeViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
