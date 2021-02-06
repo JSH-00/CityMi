@@ -6,6 +6,7 @@
 //
 
 #import "MiHomeHeadView.h"
+#import "UIColor+MiColor.h"
 @interface MiHomeHeadView ()
 
 // 分类名
@@ -17,7 +18,7 @@
 @implementation MiHomeHeadView
 - (instancetype)initWithHomeRcmdMode:(MiHomeRcmdModel *)headModel {
     if (self = [super init]) {
-        self.contentView.backgroundColor = [UIColor greenColor];
+        self.contentView.backgroundColor = [UIColor colorWithHexString:headModel.color alpha:1];
         _titleLabel = [[UILabel alloc]init];
         [self.contentView addSubview:_titleLabel];
         [_titleLabel setText:headModel.tag_name];
