@@ -67,7 +67,7 @@
     self.rmedView.backgroundColor = self.view.backgroundColor;
     
     self.nearImageView = [[UIImageView alloc] initWithFrame:self.view.bounds];
-    [self.nearImageView setImage:[UIImage imageNamed:@"wnxBG"]];
+    [self.nearImageView setImage:[UIImage imageNamed:@"MiBG"]];
     [self.nearImageView setContentMode:UIViewContentModeScaleAspectFill];
 }
 
@@ -112,6 +112,10 @@
     if (cell == nil) {
         cell = [[MiRecommendCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:ID];
     }
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    MiHomeRcmdModel *homeModel = _homeDatas[indexPath.section];
+    MiHomeCellModel *model = [MiHomeCellModel cellModelWithDict:(NSDictionary *)(homeModel.body[indexPath.row])];
+    [cell setCellInfo:model];
     return cell;
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath

@@ -5,6 +5,7 @@ target 'CityMi' do
   # Comment the next line if you don't want to use dynamic frameworks
   use_frameworks!
   pod "Masonry"
+  pod "SDWebImage"
   # Pods for CityMi
 
   target 'CityMiTests' do

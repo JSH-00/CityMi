@@ -10,8 +10,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface MiRecommendCell : UITableViewCell
-@property (strong, nonatomic) UILabel* nameLabel;
-
+- (void)setCellInfo:(MiHomeCellModel *)model;
 @end
 
 NS_ASSUME_NONNULL_END
