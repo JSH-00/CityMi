@@ -10,6 +10,7 @@
 #import "MiHomeHeadView.h"
 #import "MiHomeCellModel.h"
 #import "MiHomeRcmdModel.h"
+#define recommendCellID @"recommendCell"
 @interface HomeViewController () <UITableViewDataSource, UITableViewDelegate>
 @property (nonatomic, weak) UISegmentedControl *titleView;
 //推荐View
@@ -107,10 +108,9 @@
 
 // 加载cell
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    static NSString *ID = @"recommendCell";
-    MiRecommendCell *cell = [tableView dequeueReusableCellWithIdentifier:ID];
+    MiRecommendCell *cell = [tableView dequeueReusableCellWithIdentifier:recommendCellID];
     if (cell == nil) {
-        cell = [[MiRecommendCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:ID];
+        cell = [[MiRecommendCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:recommendCellID];
     }
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     MiHomeRcmdModel *homeModel = _homeDatas[indexPath.section];
