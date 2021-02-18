@@ -18,19 +18,21 @@
     headView.images = images;
     return headView;
 }
+
 - (instancetype)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
         self.pagingEnabled = YES; // 当滚动时，只在视图的倍数处停止
-//        self.showsHorizontalScrollIndicator = NO; // 横向指示器滚筒条
+        self.showsHorizontalScrollIndicator = NO; // 横向指示器滚筒条
         self.delegate = self;
     }
     return self;
 }
+
 // 初始化 PageView
 - (void)setPageView {
     self.pageView = [[UIPageControl alloc] init];
     CGFloat x = 0;
-    CGFloat y = self.bounds.size.height - 25;
+    CGFloat y = self.bounds.size.height + 55;
     CGFloat w = self.bounds.size.width;
     CGFloat h = 25;
     self.pageView.frame = CGRectMake(x, y, w, h);
@@ -42,43 +44,31 @@
         //获取网络请求路径
         NSURL *url = [NSURL URLWithString:urlStr];
         UIImageView *imageView = [[UIImageView alloc]initWithFrame:self.bounds];
-        imageView.contentMode = UIViewContentModeScaleToFill;
-        
-        UIImageView *loadingImage =[[UIImageView alloc]initWithImage:[UIImage imageNamed:@"MiBG"]];
-        loadingImage.con
-        
-        [imageView sd_setImageWithURL:url placeholderImage:];
+        imageView.contentMode = UIViewContentModeScaleAspectFill;
+        [imageView sd_setImageWithURL:url placeholderImage:[UIImage imageNamed:@"MiBG"]];
         CGFloat w = self.bounds.size.width;
         CGFloat h = self.bounds.size.height;
         imageView.frame = CGRectMake(i * w, 0, w, h);
         [self insertSubview:imageView atIndex:i];
         i++;
-
     }
     if (count <= 1)
         return;
     self.pageView.numberOfPages = count;
-    self.contentSize = CGSizeMake((count + 1) * self.bounds.size.width, 0);
-
+    self.contentSize = CGSizeMake(count * self.bounds.size.width, 0);
 }
-
-
 
 - (void)didAddSubview:(UIView *)subview {
     [super didAddSubview:subview];
-    [self setPageView];
-
-    NSLog(@"===>%s",__func__);
+    if (!self.pageView) {
+        [self setPageView];
+    }
 }
-- (void)didMoveToSuperview {
-    [super didMoveToSuperview];
 
-    NSLog(@"===>%s",__func__);
-
-}
-- (void)didMoveToWindow {
-    [super didMoveToWindow];
-    NSLog(@"===>%s",__func__);
-
+#pragma mark - ScrollViewDelegate
+// 监听 scrollView 滚动，改变 pageView 当前点所在位置
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
+    CGFloat offsetX = scrollView.contentOffset.x;
+    self.pageView.currentPage = offsetX/self.bounds.size.width;
 }
 @end

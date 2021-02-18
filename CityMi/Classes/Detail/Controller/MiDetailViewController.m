@@ -27,23 +27,11 @@ static const CGFloat ScrollHeadViewHeight = 200;
     [self setUI];
 }
 - (void)setUI {
-    self.view.backgroundColor = [UIColor redColor];
-    NSArray *imagrArr = @[@"http://img.chengmi.com/cm/3bc2198c-c909-4698-91b2-88e00c5dff2a",
-                                                                     @"http://img.chengmi.com/cm/dba3fb4d-b5ef-4218-b976-52cba4538381",
-                                                                     @"http://img.chengmi.com/cm/934ad87f-400c-452e-9427-12a03fe9cf6e"];
+    self.view.backgroundColor = [UIColor whiteColor];
+    NSArray *imagrArr = @[@"https://ghproxy.com/https://raw.githubusercontent.com/lingyia/APIIMG/master/scenery/717.jpg", @"https://ghproxy.com/https://raw.githubusercontent.com/lingyia/APIIMG/master/scenery/718.jpg", @"https://ghproxy.com/https://raw.githubusercontent.com/lingyia/APIIMG/master/scenery/719.jpg"];
     self.topScrollView = [MiScrollHeadView scrollHeadViewWithImages:imagrArr];
     self.topScrollView.backgroundColor = [UIColor whiteColor];
     [self.topScrollView setFrame:CGRectMake(0, 90, MiAppWidth, ScrollHeadViewHeight)];
     [self.view addSubview:self.topScrollView];
 }
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
-
 @end
