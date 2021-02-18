@@ -1,0 +1,23 @@
+//
+//  PrefixHeader.pch
+//  CityMi
+//
+//  Created by JSH on 2021/1/31.
+//
+
+#ifndef PrefixHeader_pch
+#define PrefixHeader_pch
+#import "Masonry.h"
+// Include any system framework and library headers here that should be included in all compilation units.
+// You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
+#define MiColor(r, g, b) [UIColor colorWithRed:r/255.0f green:g/255.0f blue:b/255.0f alpha:1]
+#define MiGolbalGreen MiColor(33, 197, 180)
+//app的高度
+#define MiAppHeight ([UIScreen mainScreen].bounds.size.height)
+//app的宽度
+#define MiAppWidth ([UIScreen mainScreen].bounds.size.width)
+//推荐cell的高度
+#define MiHomeCellHeight 210.0
+//推荐headView的高度
+#define MiHeadViewHeight 60.0
+#endif /* PrefixHeader_pch */
