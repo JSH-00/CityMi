@@ -10,6 +10,7 @@
 #import "MiHomeHeadView.h"
 #import "MiHomeCellModel.h"
 #import "MiHomeRcmdModel.h"
+#import "MiDetailViewController.h"
 #define recommendCellID @"recommendCell"
 @interface HomeViewController () <UITableViewDataSource, UITableViewDelegate>
 @property (nonatomic, weak) UISegmentedControl *titleView;
@@ -23,7 +24,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-  
+
+//    self.navigationController = [[UINavigationController alloc]init];
     //设置导航条
     [self setUpNavigationItem];
     
@@ -118,9 +120,16 @@
     [cell setCellInfo:model];
     return cell;
 }
+
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return MiHomeCellHeight;
+}
+
+// cell点击跳转
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    MiDetailViewController *detailVC = [[MiDetailViewController alloc]init];
+    [self.navigationController pushViewController:detailVC animated:YES];
 }
 
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
