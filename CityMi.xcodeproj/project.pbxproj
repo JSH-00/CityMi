@@ -19,6 +19,8 @@
 		21A82ACA25DDF8F9007B878C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 21A82ABA25DDF8F9007B878C /* AppDelegate.m */; };
 		21A82ACB25DDF8F9007B878C /* MiDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 21A82ABD25DDF8F9007B878C /* MiDetailViewController.m */; };
 		21A82ACC25DDF8F9007B878C /* MiScrollHeadView.m in Sources */ = {isa = PBXBuildFile; fileRef = 21A82AC025DDF8F9007B878C /* MiScrollHeadView.m */; };
+		21C183FC25DE5F04004BD4DE /* MiSelectView.m in Sources */ = {isa = PBXBuildFile; fileRef = 21C183FB25DE5F04004BD4DE /* MiSelectView.m */; };
+		21C1840225DE5F91004BD4DE /* MiSelectButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 21C1840125DE5F91004BD4DE /* MiSelectButton.m */; };
 		57B73DCC25C554260074B543 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 57B73DCA25C554260074B543 /* Main.storyboard */; };
 		57B73DCE25C554270074B543 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 57B73DCD25C554270074B543 /* Assets.xcassets */; };
 		57B73DD125C554270074B543 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 57B73DCF25C554270074B543 /* LaunchScreen.storyboard */; };
@@ -69,6 +71,10 @@
 		21A82ABE25DDF8F9007B878C /* MiDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MiDetailViewController.h; sourceTree = "<group>"; };
 		21A82AC025DDF8F9007B878C /* MiScrollHeadView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MiScrollHeadView.m; sourceTree = "<group>"; };
 		21A82AC125DDF8F9007B878C /* MiScrollHeadView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MiScrollHeadView.h; sourceTree = "<group>"; };
+		21C183FA25DE5F04004BD4DE /* MiSelectView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MiSelectView.h; sourceTree = "<group>"; };
+		21C183FB25DE5F04004BD4DE /* MiSelectView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MiSelectView.m; sourceTree = "<group>"; };
+		21C1840025DE5F91004BD4DE /* MiSelectButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MiSelectButton.h; sourceTree = "<group>"; };
+		21C1840125DE5F91004BD4DE /* MiSelectButton.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MiSelectButton.m; sourceTree = "<group>"; };
 		3CF7C0AB269FF19140B91E62 /* Pods_CityMiTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CityMiTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		57B73DBE25C554260074B543 /* CityMi.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CityMi.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		57B73DCB25C554260074B543 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -192,9 +198,9 @@
 		21A82AB425DDF8F9007B878C /* Other */ = {
 			isa = PBXGroup;
 			children = (
-				21A82AB525DDF8F9007B878C /* AppDelegate.h */,
 				21A82AB625DDF8F9007B878C /* Category */,
 				21A82AB925DDF8F9007B878C /* main.m */,
+				21A82AB525DDF8F9007B878C /* AppDelegate.h */,
 				21A82ABA25DDF8F9007B878C /* AppDelegate.m */,
 			);
 			path = Other;
@@ -232,6 +238,10 @@
 			children = (
 				21A82AC025DDF8F9007B878C /* MiScrollHeadView.m */,
 				21A82AC125DDF8F9007B878C /* MiScrollHeadView.h */,
+				21C183FA25DE5F04004BD4DE /* MiSelectView.h */,
+				21C183FB25DE5F04004BD4DE /* MiSelectView.m */,
+				21C1840025DE5F91004BD4DE /* MiSelectButton.h */,
+				21C1840125DE5F91004BD4DE /* MiSelectButton.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -551,8 +561,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				21A82AC525DDF8F9007B878C /* MiRecommendCell.m in Sources */,
+				21C1840225DE5F91004BD4DE /* MiSelectButton.m in Sources */,
 				21A82AC825DDF8F9007B878C /* UIColor+MiColor.m in Sources */,
 				21A82AC325DDF8F9007B878C /* MiHomeCellModel.m in Sources */,
+				21C183FC25DE5F04004BD4DE /* MiSelectView.m in Sources */,
 				21A82ACC25DDF8F9007B878C /* MiScrollHeadView.m in Sources */,
 				21A82AC225DDF8F9007B878C /* HomeViewController.m in Sources */,
 				21A82ACA25DDF8F9007B878C /* AppDelegate.m in Sources */,
