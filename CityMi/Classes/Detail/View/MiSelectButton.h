@@ -10,6 +10,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface MiSelectButton : UIButton
+- (void)initBtn:(MiSelectButton *)btn title:(NSString *)title image:(UIImage *)image tag:(NSInteger)tag;
 
 @end
 

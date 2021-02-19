@@ -8,14 +8,19 @@
  */
 // 顶部scrollHeadView 的高度
 static const CGFloat ScrollHeadViewHeight = 200;
-
+//选择View的高度
+static const CGFloat SelectViewHeight = 45;
 #import "MiDetailViewController.h"
 #import "MiScrollHeadView.h"
+#import "MiSelectView.h"
 @interface MiDetailViewController ()
 /** 最底部的scrollView，用来掌控所有控件的上下滚动 */
 @property (nonatomic, strong) UIScrollView *backgroundScrollView;
 /** 顶部图片的scrollView，展示图片 */
 @property (nonatomic, strong) MiScrollHeadView *topScrollView;
+/** 选择tableView的view */
+@property (nonatomic, strong) MiSelectView *selectView;
+
 @end
 
 @implementation MiDetailViewController
@@ -33,5 +38,8 @@ static const CGFloat ScrollHeadViewHeight = 200;
     self.topScrollView.backgroundColor = [UIColor whiteColor];
     [self.topScrollView setFrame:CGRectMake(0, 90, MiAppWidth, ScrollHeadViewHeight)];
     [self.view addSubview:self.topScrollView];
+
+    self.selectView = [[MiSelectView alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(self.topScrollView.frame), MiAppWidth, SelectViewHeight)];
+    [self.view addSubview:self.selectView];
 }
 @end
