@@ -14,6 +14,8 @@
 @property (nonatomic, strong) MiSelectButton *infoBtn;
 /**底部滑动动画条*/
 @property (nonatomic, strong) UIView *slideLineView;
+/**记录当前被选中的按钮*/
+@property (nonatomic, weak) MiSelectButton *nowSelectedBtn;
 @end
 @implementation MiSelectView
 - (instancetype)initWithFrame:(CGRect)frame {
@@ -60,13 +62,47 @@
 }
 #pragma mark - 按钮的Action
 - (void)btnClick:(MiSelectButton *)sender {
+    if (self.nowSelectedBtn == sender) return;
+
+    if ([self.delegate respondsToSelector:@selector(selectView:didSelectedButtonFrom:to:)]) {
+        [self.delegate selectView:self didSelectedButtonFrom:self.nowSelectedBtn.tag to:sender.tag];
+    }
+
+    // 给滑动的小条做动画
     CGRect rect = self.slideLineView.frame;
     rect.origin.x = sender.frame.origin.x;
     [UIView animateWithDuration:0.3 animations:^{
         self.slideLineView.frame = rect;
     }];
+    self.nowSelectedBtn = sender;
 }
 
+// 调用该函数，切换页面（通过代理）的同时，让 view 跟着切换页面的动画而运动
+- (void)lineToIndex:(NSInteger)index {
+    switch (index) {
+        case 0:
+            if ([self.delegate respondsToSelector:@selector(selectView:didChangeSelectedView:)]){
+                [self.delegate selectView:self didChangeSelectedView:0];
+            }
+            self.nowSelectedBtn = self.groomBtn;
+            break;
+        case 1:
+            if ([self.delegate respondsToSelector:@selector(selectView:didChangeSelectedView:)]){
+                [self.delegate selectView:self didChangeSelectedView:0];
+            }
+            self.nowSelectedBtn = self.infoBtn;
+            break;
+        default:
+            break;
+    }
+
+    CGRect rect = self.slideLineView.frame;
+    rect.origin.x = self.nowSelectedBtn.frame.origin.x;
+
+    [UIView animateWithDuration:0.3 animations:^{
+            self.slideLineView.frame = rect;
+    }];
+}
 /*
 // Only override drawRect: if you perform custom drawing.
 // An empty implementation adversely affects performance during animation.
