@@ -13,6 +13,11 @@ static const CGFloat SelectViewHeight = 45;
 #import "MiDetailViewController.h"
 #import "MiScrollHeadView.h"
 #import "MiSelectView.h"
+#import "MiDetailRnmdTableHeadView.h"
+#import "MiDetailModel.h"
+#import "MiRmdCellModel.h"
+#import "MiRmdTextCell.h"
+#import "MiRmdPicCell.h"
 @interface MiDetailViewController () <MiSelectViewDelegate, UITableViewDelegate, UITableViewDataSource>
 /** 记录scrollView上次偏移X的距离，没有初始化 */
 @property (nonatomic, assign) CGFloat                    scrollX;
@@ -24,16 +29,45 @@ static const CGFloat SelectViewHeight = 45;
 @property (nonatomic, strong) MiScrollHeadView *topScrollView;
 /** 选择tableView的view */
 @property (nonatomic, strong) MiSelectView *selectView;
+/** 推荐tableViewtableHeadView */
+@property (nonatomic, strong) MiDetailRnmdTableHeadView * tableHeadView;
 /** 记录当前展示的tableView 计算顶部topView滑动的距离 */
 @property (nonatomic, strong) UITableView *showingTableView;
 /** 推荐tableView */
 @property (nonatomic, strong) UITableView *rmdTableView;
 /** 信息tableView */
 @property (nonatomic, strong) UITableView *infoTableView;
-
+/** 详情页的数据 */
+@property (nonatomic, strong) MiDetailModel *details;
+/** 推荐页的数据 */
+@property (nonatomic, strong) NSMutableArray *rmdDatas;
 @end
 
 @implementation MiDetailViewController
+
+// 懒加载数据
+- (MiDetailModel *)details {
+    if (_details == nil) {
+        NSString *path = [[NSBundle mainBundle] pathForResource:@"detailJson" ofType:nil];
+        NSData *data = [NSData dataWithContentsOfFile:path];
+        NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
+        _details = [MiDetailModel detailModelWith:dict[@"body"]];
+    }
+    return _details;
+}
+
+-(NSMutableArray *)rmdDatas {
+    if (_rmdDatas == nil) {
+        _rmdDatas = [NSMutableArray array];
+        NSMutableArray *tmp = [NSMutableArray array];
+        tmp = self.details.article_list[0][@"newcontent"];
+        for (NSDictionary *dict in tmp) {
+            MiRmdCellModel *cellModel = [MiRmdCellModel rmdCellModelWithDict:dict];
+            [_rmdDatas addObject:cellModel];
+        }
+    }
+    return _rmdDatas;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -43,7 +77,13 @@ static const CGFloat SelectViewHeight = 45;
 }
 - (void)setUI {
     self.view.backgroundColor = [UIColor whiteColor];
-
+    
+    // 当 scrollView 是其父视图上的第一个子视图，且 navigationBar 不隐藏的情况下，加到 scrollView 里的视图，都会默认下移64个像素。
+    // 添加如下代码，可以避免下移
+    if (@available(iOS 11.0, *)){
+        self.automaticallyAdjustsScrollViewInsets = NO;
+    }
+    
     // 初始化最底部 scrollView,用来装切换的tableView
     self.backgroundScrollView = [[UIScrollView alloc]initWithFrame:[UIScreen mainScreen].bounds];
     [self.view addSubview:self.backgroundScrollView];
@@ -56,7 +96,7 @@ static const CGFloat SelectViewHeight = 45;
 
 
     // 切换的推荐view
-    self.rmdTableView = [[UITableView alloc]initWithFrame:[UIScreen mainScreen].bounds style:UITableViewStylePlain];
+    self.rmdTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, MiAppWidth, MiAppHeight)];
     self.rmdTableView.delegate = self;
     self.rmdTableView.dataSource = self;
     self.rmdTableView.backgroundColor = [UIColor whiteColor];
@@ -81,12 +121,32 @@ static const CGFloat SelectViewHeight = 45;
     self.selectView = [[MiSelectView alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(self.topScrollView.frame), MiAppWidth, SelectViewHeight)];
     self.selectView.delegate = self;
     [self.view addSubview:self.selectView];
+
+    //添加推荐 tableView 的 HeadView
+    self.tableHeadView = [[MiDetailRnmdTableHeadView alloc]initWithFrame:CGRectMake(0, 0, MiAppWidth, 60)];
+    self.rmdTableView.tableHeaderView = self.tableHeadView;
+
+}
+
+#pragma mark - tableViewDelegate
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (tableView == self.rmdTableView) {
+        MiRmdCellModel *rmdCellModel = self.rmdDatas[indexPath.row];
+        NSString *ch = rmdCellModel.ch;
+        if (ch) {
+            return rmdCellModel.cellHeight;
+        } else {
+            return 348;
+        }
+    } else {
+        return 200;
+    }
 }
 
 #pragma mark - tableViewDataSourceDelegate
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     if (tableView == self.rmdTableView) {
-        return 1;
+        return self.rmdDatas.count;
     } else {
         return 2;
     }
@@ -94,6 +154,17 @@ static const CGFloat SelectViewHeight = 45;
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [[UITableViewCell alloc]init];
+    if (tableView == self.rmdTableView) {
+        MiRmdCellModel *rmdCellModel = self.rmdDatas[indexPath.row];
+        NSString *ch = rmdCellModel.ch;
+        if (ch) {
+            return [MiRmdTextCell cellWithTableView:tableView rmdCellModel:rmdCellModel];
+        } else {
+            return [MiRmdPicCell cellWithTableView:tableView rmdCellModel:rmdCellModel];
+        }
+    }
+
+//    return cell;这里写 info cell
     return cell;
 }
 
