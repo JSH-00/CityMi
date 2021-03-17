@@ -18,7 +18,11 @@ static const CGFloat SelectViewHeight = 45;
 #import "MiRmdCellModel.h"
 #import "MiRmdTextCell.h"
 #import "MiRmdPicCell.h"
-@interface MiDetailViewController () <MiSelectViewDelegate, UITableViewDelegate, UITableViewDataSource>
+#import "MiInfoModel.h"
+#import "MiInfoCell.h"
+#import <AMapFoundationKit/AMapFoundationKit.h>
+#import <MAMapKit/MAMapKit.h>
+@interface MiDetailViewController () <MiSelectViewDelegate, UITableViewDelegate, UITableViewDataSource, MAMapViewDelegate>
 /** 记录scrollView上次偏移X的距离，没有初始化 */
 @property (nonatomic, assign) CGFloat                    scrollX;
 /** 最底部的scrollView，用来掌控所有控件的上下滚动 */
@@ -41,6 +45,11 @@ static const CGFloat SelectViewHeight = 45;
 @property (nonatomic, strong) MiDetailModel *details;
 /** 推荐页的数据 */
 @property (nonatomic, strong) NSMutableArray *rmdDatas;
+/** 信息页的数据 */
+@property (nonatomic, strong) NSMutableArray *infoDatas;
+/** 地图ivew */
+@property (nonatomic, strong) MAMapView *mapView;
+
 @end
 
 @implementation MiDetailViewController
@@ -56,7 +65,7 @@ static const CGFloat SelectViewHeight = 45;
     return _details;
 }
 
--(NSMutableArray *)rmdDatas {
+- (NSMutableArray *)rmdDatas {
     if (_rmdDatas == nil) {
         _rmdDatas = [NSMutableArray array];
         NSMutableArray *tmp = [NSMutableArray array];
@@ -67,6 +76,18 @@ static const CGFloat SelectViewHeight = 45;
         }
     }
     return _rmdDatas;
+}
+
+- (NSMutableArray *)infoDatas {
+    if (_infoDatas == nil) {
+        _infoDatas = [NSMutableArray array];
+        NSArray *arr = [NSArray arrayWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"infoDatas" ofType:@"plist"]];
+        for (NSDictionary *dict in arr) {
+            MiInfoModel *model = [MiInfoModel infoModelWithDict:dict];
+            [_infoDatas addObject:model];
+        }
+    }
+    return _infoDatas;
 }
 
 - (void)viewDidLoad {
@@ -125,7 +146,18 @@ static const CGFloat SelectViewHeight = 45;
     //添加推荐 tableView 的 HeadView
     self.tableHeadView = [[MiDetailRnmdTableHeadView alloc]initWithFrame:CGRectMake(0, 0, MiAppWidth, 60)];
     self.rmdTableView.tableHeaderView = self.tableHeadView;
-
+    
+    // 初始化地图
+    [AMapServices sharedServices].apiKey = @"b97f852099883851c86b6d57ab6f1d89";
+    self.mapView = [[MAMapView alloc]initWithFrame:CGRectMake(0, 0, MiAppWidth, 220)];
+    self.mapView.delegate = self;
+    self.mapView.showsScale = NO;
+    self.mapView.showsCompass = NO;
+    self.mapView.showsUserLocation = YES;
+    self.mapView.scrollEnabled = NO;
+    self.mapView.zoomLevel = 14;
+    [self.mapView setCenterCoordinate:CLLocationCoordinate2DMake(30.1871, 120.1646) animated:YES];
+    self.infoTableView.tableHeaderView = self.mapView;
 }
 
 #pragma mark - tableViewDelegate
@@ -139,7 +171,8 @@ static const CGFloat SelectViewHeight = 45;
             return 348;
         }
     } else {
-        return 200;
+        MiInfoModel *infoCellModel = self.infoDatas[indexPath.row];
+        return infoCellModel.cellHeight;
     }
 }
 
@@ -148,12 +181,11 @@ static const CGFloat SelectViewHeight = 45;
     if (tableView == self.rmdTableView) {
         return self.rmdDatas.count;
     } else {
-        return 2;
+        return self.infoDatas.count;
     }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [[UITableViewCell alloc]init];
     if (tableView == self.rmdTableView) {
         MiRmdCellModel *rmdCellModel = self.rmdDatas[indexPath.row];
         NSString *ch = rmdCellModel.ch;
@@ -163,9 +195,8 @@ static const CGFloat SelectViewHeight = 45;
             return [MiRmdPicCell cellWithTableView:tableView rmdCellModel:rmdCellModel];
         }
     }
-
-//    return cell;这里写 info cell
-    return cell;
+    MiInfoCell *InfoCell = [MiInfoCell cellWithTableView:tableView infoCellModel:self.infoDatas[indexPath.row]];
+    return InfoCell;
 }
 
 #pragma mark - MiSelectViewDelegate选择条的代理方法

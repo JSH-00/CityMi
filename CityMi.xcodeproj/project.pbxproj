@@ -33,6 +33,9 @@
 		57B73DDE25C554270074B543 /* CityMiTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 57B73DDD25C554270074B543 /* CityMiTests.m */; };
 		57B73DE925C554270074B543 /* CityMiUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 57B73DE825C554270074B543 /* CityMiUITests.m */; };
 		57B73E3825C699980074B543 /* MiLaunchImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 57B73E3725C699980074B543 /* MiLaunchImage.png */; };
+		57D7B5A925FCB56600C4E9E5 /* MiInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 57D7B5A825FCB56600C4E9E5 /* MiInfoModel.m */; };
+		57D7B5AE25FCD21200C4E9E5 /* infoDatas.plist in Resources */ = {isa = PBXBuildFile; fileRef = 57D7B5AD25FCD21200C4E9E5 /* infoDatas.plist */; };
+		57D7B5B425FE275F00C4E9E5 /* MiInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 57D7B5B325FE275F00C4E9E5 /* MiInfoCell.m */; };
 		7347644296EE8C74894A6217 /* Pods_CityMi_CityMiUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 13C9A96216989444041CA2C2 /* Pods_CityMi_CityMiUITests.framework */; };
 		BED6ECE780FC301FBF95D92B /* Pods_CityMi.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CF2954C4E8A4443E865AD0A0 /* Pods_CityMi.framework */; };
 /* End PBXBuildFile section */
@@ -106,6 +109,11 @@
 		57B73DEA25C554270074B543 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		57B73E3725C699980074B543 /* MiLaunchImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MiLaunchImage.png; sourceTree = "<group>"; };
 		57B73E5925C6AB850074B543 /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
+		57D7B5A725FCB56600C4E9E5 /* MiInfoModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MiInfoModel.h; sourceTree = "<group>"; };
+		57D7B5A825FCB56600C4E9E5 /* MiInfoModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MiInfoModel.m; sourceTree = "<group>"; };
+		57D7B5AD25FCD21200C4E9E5 /* infoDatas.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = infoDatas.plist; sourceTree = "<group>"; };
+		57D7B5B225FE275F00C4E9E5 /* MiInfoCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MiInfoCell.h; sourceTree = "<group>"; };
+		57D7B5B325FE275F00C4E9E5 /* MiInfoCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MiInfoCell.m; sourceTree = "<group>"; };
 		C254E3D9150A235FC4140EE9 /* Pods-CityMiTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CityMiTests.debug.xcconfig"; path = "Target Support Files/Pods-CityMiTests/Pods-CityMiTests.debug.xcconfig"; sourceTree = "<group>"; };
 		C5F7C7987AC70590615AC6E0 /* Pods-CityMi.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CityMi.debug.xcconfig"; path = "Target Support Files/Pods-CityMi/Pods-CityMi.debug.xcconfig"; sourceTree = "<group>"; };
 		CABA9A144C276E44229ADCD0 /* Pods-CityMi-CityMiUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CityMi-CityMiUITests.debug.xcconfig"; path = "Target Support Files/Pods-CityMi-CityMiUITests/Pods-CityMi-CityMiUITests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -209,6 +217,7 @@
 			children = (
 				21E9DFB525EF743700B50852 /* detailJson */,
 				21A82AB325DDF8F9007B878C /* HomeDatas.plist */,
+				57D7B5AD25FCD21200C4E9E5 /* infoDatas.plist */,
 			);
 			path = CustomPlist;
 			sourceTree = "<group>";
@@ -267,6 +276,8 @@
 				579FD1EF25F31FE600E760D7 /* MiRmdTextCell.m */,
 				579FD1F425F6E49100E760D7 /* MiRmdPicCell.h */,
 				579FD1F525F6E49100E760D7 /* MiRmdPicCell.m */,
+				57D7B5B225FE275F00C4E9E5 /* MiInfoCell.h */,
+				57D7B5B325FE275F00C4E9E5 /* MiInfoCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -278,6 +289,8 @@
 				21E9DFCB25EF78F700B50852 /* MiDetailModel.m */,
 				21E9DFD025F0883100B50852 /* MiRmdCellModel.h */,
 				21E9DFD125F0883100B50852 /* MiRmdCellModel.m */,
+				57D7B5A725FCB56600C4E9E5 /* MiInfoModel.h */,
+				57D7B5A825FCB56600C4E9E5 /* MiInfoModel.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -369,6 +382,7 @@
 				57B73DBB25C554260074B543 /* Frameworks */,
 				57B73DBC25C554260074B543 /* Resources */,
 				9E00756CBE75B6202488079F /* [CP] Embed Pods Frameworks */,
+				97BD7F3A79F0B4587ACA6273 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -407,6 +421,7 @@
 				57B73DE125C554270074B543 /* Frameworks */,
 				57B73DE225C554270074B543 /* Resources */,
 				18D6C23FBE390F671DEBE5A1 /* [CP] Embed Pods Frameworks */,
+				D79BA9DB244CE8F0030F3930 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -467,6 +482,7 @@
 				57B73E3825C699980074B543 /* MiLaunchImage.png in Resources */,
 				57B73DD125C554270074B543 /* LaunchScreen.storyboard in Resources */,
 				57B73DCE25C554270074B543 /* Assets.xcassets in Resources */,
+				57D7B5AE25FCD21200C4E9E5 /* infoDatas.plist in Resources */,
 				21E9DFB625EF743700B50852 /* detailJson in Resources */,
 				21A82AC725DDF8F9007B878C /* HomeDatas.plist in Resources */,
 				57B73DCC25C554260074B543 /* Main.storyboard in Resources */,
@@ -573,6 +589,23 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		97BD7F3A79F0B4587ACA6273 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-CityMi/Pods-CityMi-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-CityMi/Pods-CityMi-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-CityMi/Pods-CityMi-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		9E00756CBE75B6202488079F /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -590,6 +623,23 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-CityMi/Pods-CityMi-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		D79BA9DB244CE8F0030F3930 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-CityMi-CityMiUITests/Pods-CityMi-CityMiUITests-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-CityMi-CityMiUITests/Pods-CityMi-CityMiUITests-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-CityMi-CityMiUITests/Pods-CityMi-CityMiUITests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -602,6 +652,8 @@
 				21A82AC825DDF8F9007B878C /* UIColor+MiColor.m in Sources */,
 				21A82AC325DDF8F9007B878C /* MiHomeCellModel.m in Sources */,
 				21C183FC25DE5F04004BD4DE /* MiSelectView.m in Sources */,
+				57D7B5A925FCB56600C4E9E5 /* MiInfoModel.m in Sources */,
+				57D7B5B425FE275F00C4E9E5 /* MiInfoCell.m in Sources */,
 				21A82ACC25DDF8F9007B878C /* MiScrollHeadView.m in Sources */,
 				21E9DFAD25EE351400B50852 /* MiDetailRnmdTableHeadView.m in Sources */,
 				21A82AC225DDF8F9007B878C /* HomeViewController.m in Sources */,
