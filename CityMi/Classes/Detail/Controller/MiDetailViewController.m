@@ -49,7 +49,8 @@ static const CGFloat SelectViewHeight = 45;
 @property (nonatomic, strong) NSMutableArray *infoDatas;
 /** 地图ivew */
 @property (nonatomic, strong) MAMapView *mapView;
-
+/** 电话弹窗 */
+@property (nonatomic, strong) UIAlertController *actionController;
 @end
 
 @implementation MiDetailViewController
@@ -197,6 +198,34 @@ static const CGFloat SelectViewHeight = 45;
     }
     MiInfoCell *InfoCell = [MiInfoCell cellWithTableView:tableView infoCellModel:self.infoDatas[indexPath.row]];
     return InfoCell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (tableView == self.rmdTableView) {
+        return;
+    } else if (indexPath.row == 0) {
+        // 跳转到地图页面
+    } else if (indexPath.row == 3) {
+        MiInfoModel *model = self.infoDatas[indexPath.row];
+        // 打电话
+        self.actionController = [UIAlertController alertControllerWithTitle:@"选择要播的电话" message:nil preferredStyle:UIAlertControllerStyleActionSheet];
+        UIAlertAction * phoneNum1 = [UIAlertAction actionWithTitle:model.title style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            // 添加跳转到电话
+        }];
+
+        UIAlertAction * phoneNum2 = [UIAlertAction actionWithTitle:model.subTitle style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            // 添加跳转到电话
+        }];
+
+        UIAlertAction * cancel = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+            [self.actionController dismissViewControllerAnimated:YES completion:nil];
+        }];
+
+        [self.actionController addAction:phoneNum1];
+        [self.actionController addAction:phoneNum2];
+        [self.actionController addAction:cancel];
+        [self presentViewController:self.actionController animated:YES completion:nil];
+    }
 }
 
 #pragma mark - MiSelectViewDelegate选择条的代理方法
