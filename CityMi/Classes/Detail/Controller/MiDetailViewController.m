@@ -27,6 +27,10 @@ static const CGFloat SelectViewHeight = 45;
 @property (nonatomic, assign) CGFloat                    scrollX;
 /** 最底部的scrollView，用来掌控所有控件的上下滚动 */
 @property (nonatomic, strong) UIScrollView *backgroundScrollView;
+/** 导航条的背景view */
+@property (nonatomic, strong) UIView *naviView;
+/** 返回按钮 */
+@property (nonatomic, strong) UIButton *backBtn;
 /** 用来装顶部的scrollView用的View */
 @property (nonatomic, strong) UIView *topView;
 /** 顶部图片的scrollView，展示图片 */
@@ -96,6 +100,7 @@ static const CGFloat SelectViewHeight = 45;
     // Do any additional setup after loading the view.
 
     [self setUI];
+    [self setUpNavigationBar];
 }
 - (void)setUI {
     self.view.backgroundColor = [UIColor whiteColor];
@@ -226,6 +231,40 @@ static const CGFloat SelectViewHeight = 45;
         [self.actionController addAction:cancel];
         [self presentViewController:self.actionController animated:YES completion:nil];
     }
+}
+
+#pragma mark - 自定义导航条
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    self.navigationController.navigationBarHidden = YES;
+}
+
+- (void)viewDidDisappear:(BOOL)animated {
+    [super viewDidDisappear:animated];
+    self.navigationController.navigationBarHidden = YES;
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    self.navigationController.navigationBarHidden = YES;
+}
+
+- (void)setUpNavigationBar {
+    // 初始化自定义导航条
+    self.naviView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, MiAppWidth, 90)];
+    self.naviView.backgroundColor = MiGolbalGreen;
+    [self.view addSubview:self.naviView];
+
+    // 添加返回按钮
+    self.backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    self.backBtn.frame = CGRectMake(5, 56, 25, 25);
+    [self.backBtn addTarget:self action:@selector(backButtonClick:) forControlEvents:UIControlEventTouchUpInside];
+    [self.backBtn setImage:[UIImage imageNamed:@"back"] forState:UIControlStateNormal];
+    [self.view addSubview:self.backBtn];
+}
+
+- (void)backButtonClick:(UIButton *)sender {
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 #pragma mark - MiSelectViewDelegate选择条的代理方法
