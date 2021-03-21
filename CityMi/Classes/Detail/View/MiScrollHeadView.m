@@ -32,7 +32,7 @@
 - (void)setPageView {
     self.pageView = [[UIPageControl alloc] init];
     CGFloat x = 0;
-    CGFloat y = self.bounds.size.height + 55;
+    CGFloat y = self.bounds.size.height - 30;
     CGFloat w = self.bounds.size.width;
     CGFloat h = 25;
     self.pageView.frame = CGRectMake(x, y, w, h);
@@ -52,6 +52,13 @@
         [self insertSubview:imageView atIndex:i];
         i++;
     }
+
+    self.naviView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, w * count, self.bounds.size.height)];
+    self.naviView.backgroundColor = MiGolbalGreen;
+    self.naviView.alpha = 0.0;
+    self.naviView = self.naviView;
+    [self.superview insertSubview:self.naviView aboveSubview:self.pageView];
+
     if (count <= 1)
         return;
     self.pageView.numberOfPages = count;

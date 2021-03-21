@@ -7,7 +7,7 @@
 /* 由于 MiDetailViewController 页面可重用，所以单独放在 Detail 文件夹下。
  */
 // 顶部scrollHeadView 的高度
-static const CGFloat ScrollHeadViewHeight = 200;
+static const CGFloat ScrollHeadViewHeight = 250;
 //选择View的高度
 static const CGFloat SelectViewHeight = 45;
 #import "MiDetailViewController.h"
@@ -24,7 +24,9 @@ static const CGFloat SelectViewHeight = 45;
 #import <MAMapKit/MAMapKit.h>
 @interface MiDetailViewController () <MiSelectViewDelegate, UITableViewDelegate, UITableViewDataSource, MAMapViewDelegate>
 /** 记录scrollView上次偏移X的距离，没有初始化 */
-@property (nonatomic, assign) CGFloat                    scrollX;
+@property (nonatomic, assign) CGFloat scrollX;
+/** 记录scrollView上次偏移Y的距离 */
+@property (nonatomic, assign) CGFloat scrollY;
 /** 最底部的scrollView，用来掌控所有控件的上下滚动 */
 @property (nonatomic, strong) UIScrollView *backgroundScrollView;
 /** 导航条的背景view */
@@ -103,6 +105,7 @@ static const CGFloat SelectViewHeight = 45;
     [self setUpNavigationBar];
 }
 - (void)setUI {
+    [self.navigationController setNavigationBarHidden:YES animated:YES];
     self.view.backgroundColor = [UIColor whiteColor];
     
     // 当 scrollView 是其父视图上的第一个子视图，且 navigationBar 不隐藏的情况下，加到 scrollView 里的视图，都会默认下移64个像素。
@@ -128,7 +131,7 @@ static const CGFloat SelectViewHeight = 45;
     self.rmdTableView.dataSource = self;
     self.rmdTableView.backgroundColor = [UIColor whiteColor];
     [self.backgroundScrollView addSubview:self.rmdTableView];
-    self.rmdTableView.contentInset = UIEdgeInsetsMake(ScrollHeadViewHeight + SelectViewHeight, 0, 0, 0);
+    self.rmdTableView.contentInset = UIEdgeInsetsMake(ScrollHeadViewHeight + SelectViewHeight - 48, 0, 0, 0);
 
     // 切换的信息view
     self.infoTableView = [[UITableView alloc]initWithFrame:CGRectMake(MiAppWidth, 0, MiAppWidth, MiAppHeight) style:UITableViewStylePlain];
@@ -136,13 +139,20 @@ static const CGFloat SelectViewHeight = 45;
     self.infoTableView.dataSource = self;
     self.infoTableView.backgroundColor = [UIColor whiteColor];
     [self.backgroundScrollView addSubview:self.infoTableView];
-    self.infoTableView.contentInset = UIEdgeInsetsMake(ScrollHeadViewHeight + SelectViewHeight, 0, 0, 0);
+    self.infoTableView.contentInset = UIEdgeInsetsMake(ScrollHeadViewHeight + SelectViewHeight - 48, 0, 0, 0);
 
     NSArray *imagrArr = @[@"https://ghproxy.com/https://raw.githubusercontent.com/lingyia/APIIMG/master/scenery/717.jpg", @"https://ghproxy.com/https://raw.githubusercontent.com/lingyia/APIIMG/master/scenery/718.jpg", @"https://ghproxy.com/https://raw.githubusercontent.com/lingyia/APIIMG/master/scenery/719.jpg"];
     self.topScrollView = [MiScrollHeadView scrollHeadViewWithImages:imagrArr];
     self.topScrollView.backgroundColor = [UIColor whiteColor];
-    [self.topScrollView setFrame:CGRectMake(0, 90, MiAppWidth, ScrollHeadViewHeight)];
-    [self.view addSubview:self.topScrollView]; // 后续应加在topview上
+    [self.topScrollView setFrame:CGRectMake(0, 0, MiAppWidth, ScrollHeadViewHeight)];
+
+    self.topView = [[UIView alloc]initWithFrame:CGRectMake(0, -48, MiAppWidth, ScrollHeadViewHeight)];
+    self.topView.backgroundColor = [UIColor redColor];
+    UIView *v1 = [[UIView alloc]init];
+    [self.topView addSubview:v1];
+
+    [self.topView addSubview:self.topScrollView];
+    [self.view addSubview:self.topView];
 
     // 切换推荐/信息的 view
     self.selectView = [[MiSelectView alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(self.topScrollView.frame), MiAppWidth, SelectViewHeight)];
@@ -253,6 +263,7 @@ static const CGFloat SelectViewHeight = 45;
     // 初始化自定义导航条
     self.naviView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, MiAppWidth, 90)];
     self.naviView.backgroundColor = MiGolbalGreen;
+    self.naviView.alpha = 0.0;
     [self.view addSubview:self.naviView];
 
     // 添加返回按钮
@@ -301,6 +312,37 @@ static const CGFloat SelectViewHeight = 45;
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
     if (scrollView == self.rmdTableView || scrollView == self.infoTableView) {
         // 说明是tableView在竖着滚动
+
+        // 记录当前展示的是哪个tableView
+        self.showingTableView = (UITableView *)scrollView;
+
+        // 记录出上一次滑动的距离
+        CGFloat offsetY = scrollView.contentOffset.y;
+        CGFloat seleOffsetY = offsetY - self.scrollY;
+        self.scrollY = offsetY;
+
+        //修改顶部的 topView 位置
+        CGRect headRect = self.topView.frame;
+        headRect.origin.y -= seleOffsetY;
+        self.topView.frame = headRect;
+
+        // 据偏移量算出alpha的值,渐隐,当偏移量大于-180开始计算消失的值
+        CGFloat startF = -80;
+        // 初始的偏移量Y值为，顶部俩个控件的高度
+        CGFloat initY = SelectViewHeight + ScrollHeadViewHeight;
+        
+        //渐现alpha值
+        CGFloat alphaScaleShow = (offsetY + startF + 340) / 75 ;
+        if (alphaScaleShow >= 0.98) {
+            //显示导航条
+            [UIView animateWithDuration:0.04 animations:^{
+                self.naviView.alpha = 1;
+            }];
+        } else {
+            self.naviView.alpha = 0;
+        }
+        self.topScrollView.naviView.alpha = alphaScaleShow;
+
         // 添加代码，向上滑动后，banner会跟着上移，并慢慢显示出nav
     } else { // 说明是backgroundScrollView在横向滚动
         // TODO：滑动到下面后，应该禁止横行滑动

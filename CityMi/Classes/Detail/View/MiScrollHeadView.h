@@ -10,6 +10,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface MiScrollHeadView : UIScrollView
+@property (nonatomic, strong) UIView *naviView;
 + (instancetype)scrollHeadViewWithImages:(NSArray *)images;
 @end
 
