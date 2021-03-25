@@ -343,6 +343,15 @@ static const CGFloat SelectViewHeight = 45;
         }
         self.topScrollView.naviView.alpha = alphaScaleShow;
 
+        // 让 selectView 随着 banner 移动
+        if (offsetY >= -(90 + SelectViewHeight)) {
+            // 悬浮于 naviView 下面
+            self.selectView.frame = CGRectMake(0, 90, MiAppWidth, SelectViewHeight);
+        } else {
+            // 和 topView 一起滑动
+            self.selectView.frame = CGRectMake(0, CGRectGetMaxY(self.topView.frame), MiAppWidth, SelectViewHeight);
+        }
+
         // 添加代码，向上滑动后，banner会跟着上移，并慢慢显示出nav
     } else { // 说明是backgroundScrollView在横向滚动
         // TODO：滑动到下面后，应该禁止横行滑动
