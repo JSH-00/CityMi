@@ -174,6 +174,26 @@ static const CGFloat SelectViewHeight = 45;
     self.mapView.zoomLevel = 14;
     [self.mapView setCenterCoordinate:CLLocationCoordinate2DMake(30.1871, 120.1646) animated:YES];
     self.infoTableView.tableHeaderView = self.mapView;
+
+    // 添加自定义图片
+    MAPointAnnotation *pointAnnotation = [[MAPointAnnotation alloc]init];
+    pointAnnotation.coordinate = CLLocationCoordinate2DMake(30.1871, 120.1646);
+    [self.mapView addAnnotation:pointAnnotation];
+}
+
+#pragma mark - Map
+- (MAAnnotationView *)mapView:(MAMapView *)mapView viewForAnnotation:(id<MAAnnotation>)annotation {
+    if ([annotation isKindOfClass:[MAPointAnnotation class]]) {
+        static NSString *reuseIndetifier = @"annotationReuseIndetifier";
+        MAAnnotationView *annotationView = (MAAnnotationView *)[mapView dequeueReusableAnnotationViewWithIdentifier:reuseIndetifier];
+        if (annotationView == nil) {
+            annotationView = [[MAAnnotationView alloc]initWithAnnotation:annotation reuseIdentifier:reuseIndetifier];
+        }
+        annotationView.image = [UIImage imageNamed:@"map_activity"];
+        annotationView.centerOffset = CGPointMake(0, -18);
+        return annotationView;
+    }
+    return nil;
 }
 
 #pragma mark - tableViewDelegate
