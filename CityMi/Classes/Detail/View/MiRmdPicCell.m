@@ -25,6 +25,7 @@
         [cell setUIWithModel:rmdCellModel];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
+    [cell.picImageView sd_setImageWithURL:[NSURL URLWithString:rmdCellModel.pic] placeholderImage:[UIImage imageNamed:@"MiBG"]];
     return cell;
 }
 
@@ -39,7 +40,6 @@
     }];
     [_picImageView setContentMode:UIViewContentModeScaleAspectFill];
     _picImageView.clipsToBounds = YES;
-    [_picImageView sd_setImageWithURL:[NSURL URLWithString:model.pic] placeholderImage:[UIImage imageNamed:@"MiBG"]];
 }
 
 @end

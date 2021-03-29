@@ -25,6 +25,7 @@
         [cell setUIWithModel:rmdCellModel];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
+    cell.rmdTextLabel.text = rmdCellModel.ch;
     cell.model = rmdCellModel;
     return cell;
 }
@@ -37,7 +38,6 @@
         make.left.equalTo(self.mas_left).with.offset(20);
         make.right.equalTo(self.mas_right).with.offset(-20);
     }];
-    _rmdTextLabel.text = model.ch;
     _rmdTextLabel.lineBreakMode = NSLineBreakByWordWrapping;
     _rmdTextLabel.numberOfLines = 0;
 }

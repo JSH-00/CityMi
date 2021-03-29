@@ -148,9 +148,6 @@ static const CGFloat SelectViewHeight = 45;
 
     self.topView = [[UIView alloc]initWithFrame:CGRectMake(0, -48, MiAppWidth, ScrollHeadViewHeight)];
     self.topView.backgroundColor = [UIColor redColor];
-    UIView *v1 = [[UIView alloc]init];
-    [self.topView addSubview:v1];
-
     [self.topView addSubview:self.topScrollView];
     [self.view addSubview:self.topView];
 
@@ -372,7 +369,14 @@ static const CGFloat SelectViewHeight = 45;
             self.selectView.frame = CGRectMake(0, CGRectGetMaxY(self.topView.frame), MiAppWidth, SelectViewHeight);
         }
 
-        // 添加代码，向上滑动后，banner会跟着上移，并慢慢显示出nav
+        // 下拉时，让头部变形
+        CGFloat scaleTopView = 1 - (offsetY + SelectViewHeight + ScrollHeadViewHeight) / 100;
+        scaleTopView = scaleTopView > 1 ? scaleTopView : 1;
+        //算出头部的变形 这里的动画不是很准确，好的动画是一点一点试出来了  这里可能还需要配合锚点来进行动画,关于这种动画我会在以后单开一个项目配合blog来讲解的 这里这就不细调了
+        CGAffineTransform transform = CGAffineTransformMakeScale(scaleTopView, scaleTopView);
+        CGFloat ty = (scaleTopView - 1) * ScrollHeadViewHeight;
+        self.topView.transform = CGAffineTransformTranslate(transform, 0, -ty * 0.2);
+
     } else { // 说明是backgroundScrollView在横向滚动
         // TODO：滑动到下面后，应该禁止横行滑动
         // TODO：让新出来的tableView的contentOffset正好卡在selectView的头上？？？
