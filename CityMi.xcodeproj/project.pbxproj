@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		005C7438F2CA2CD7BB0D0B6C /* Pods_CityMiTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3CF7C0AB269FF19140B91E62 /* Pods_CityMiTests.framework */; };
+		21112FD42612D8D200B920DF /* MiMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 21112FD32612D8D200B920DF /* MiMainViewController.m */; };
+		21112FDE2612D92000B920DF /* MiLeftManuView.m in Sources */ = {isa = PBXBuildFile; fileRef = 21112FDD2612D92000B920DF /* MiLeftManuView.m */; };
+		21112FE72612FC8800B920DF /* MiNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 21112FE62612FC8800B920DF /* MiNavigationController.m */; };
 		21A82AC225DDF8F9007B878C /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 21A82AA625DDF8F9007B878C /* HomeViewController.m */; };
 		21A82AC325DDF8F9007B878C /* MiHomeCellModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 21A82AAA25DDF8F9007B878C /* MiHomeCellModel.m */; };
 		21A82AC425DDF8F9007B878C /* MiHomeRcmdModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 21A82AAC25DDF8F9007B878C /* MiHomeRcmdModel.m */; };
@@ -36,6 +39,7 @@
 		57D7B5A925FCB56600C4E9E5 /* MiInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 57D7B5A825FCB56600C4E9E5 /* MiInfoModel.m */; };
 		57D7B5AE25FCD21200C4E9E5 /* infoDatas.plist in Resources */ = {isa = PBXBuildFile; fileRef = 57D7B5AD25FCD21200C4E9E5 /* infoDatas.plist */; };
 		57D7B5B425FE275F00C4E9E5 /* MiInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 57D7B5B325FE275F00C4E9E5 /* MiInfoCell.m */; };
+		57D7B5D1261B4F2D00C4E9E5 /* MiMenuButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 57D7B5D0261B4F2D00C4E9E5 /* MiMenuButton.m */; };
 		7347644296EE8C74894A6217 /* Pods_CityMi_CityMiUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 13C9A96216989444041CA2C2 /* Pods_CityMi_CityMiUITests.framework */; };
 		BED6ECE780FC301FBF95D92B /* Pods_CityMi.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CF2954C4E8A4443E865AD0A0 /* Pods_CityMi.framework */; };
 /* End PBXBuildFile section */
@@ -60,6 +64,12 @@
 /* Begin PBXFileReference section */
 		13C9A96216989444041CA2C2 /* Pods_CityMi_CityMiUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CityMi_CityMiUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1823590A3BF79171421B4626 /* Pods-CityMi.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CityMi.release.xcconfig"; path = "Target Support Files/Pods-CityMi/Pods-CityMi.release.xcconfig"; sourceTree = "<group>"; };
+		21112FD22612D8D200B920DF /* MiMainViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MiMainViewController.h; sourceTree = "<group>"; };
+		21112FD32612D8D200B920DF /* MiMainViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MiMainViewController.m; sourceTree = "<group>"; };
+		21112FDC2612D92000B920DF /* MiLeftManuView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MiLeftManuView.h; sourceTree = "<group>"; };
+		21112FDD2612D92000B920DF /* MiLeftManuView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MiLeftManuView.m; sourceTree = "<group>"; };
+		21112FE52612FC8800B920DF /* MiNavigationController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MiNavigationController.h; sourceTree = "<group>"; };
+		21112FE62612FC8800B920DF /* MiNavigationController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MiNavigationController.m; sourceTree = "<group>"; };
 		21A82AA625DDF8F9007B878C /* HomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeViewController.m; sourceTree = "<group>"; };
 		21A82AA725DDF8F9007B878C /* HomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeViewController.h; sourceTree = "<group>"; };
 		21A82AA925DDF8F9007B878C /* MiHomeRcmdModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MiHomeRcmdModel.h; sourceTree = "<group>"; };
@@ -114,6 +124,8 @@
 		57D7B5AD25FCD21200C4E9E5 /* infoDatas.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = infoDatas.plist; sourceTree = "<group>"; };
 		57D7B5B225FE275F00C4E9E5 /* MiInfoCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MiInfoCell.h; sourceTree = "<group>"; };
 		57D7B5B325FE275F00C4E9E5 /* MiInfoCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MiInfoCell.m; sourceTree = "<group>"; };
+		57D7B5CF261B4F2D00C4E9E5 /* MiMenuButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MiMenuButton.h; sourceTree = "<group>"; };
+		57D7B5D0261B4F2D00C4E9E5 /* MiMenuButton.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MiMenuButton.m; sourceTree = "<group>"; };
 		C254E3D9150A235FC4140EE9 /* Pods-CityMiTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CityMiTests.debug.xcconfig"; path = "Target Support Files/Pods-CityMiTests/Pods-CityMiTests.debug.xcconfig"; sourceTree = "<group>"; };
 		C5F7C7987AC70590615AC6E0 /* Pods-CityMi.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CityMi.debug.xcconfig"; path = "Target Support Files/Pods-CityMi/Pods-CityMi.debug.xcconfig"; sourceTree = "<group>"; };
 		CABA9A144C276E44229ADCD0 /* Pods-CityMi-CityMiUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CityMi-CityMiUITests.debug.xcconfig"; path = "Target Support Files/Pods-CityMi-CityMiUITests/Pods-CityMi-CityMiUITests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -160,9 +172,41 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		21112FD02612D87100B920DF /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				21112FDB2612D90300B920DF /* View */,
+				21112FD12612D8AD00B920DF /* Controller */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
+		21112FD12612D8AD00B920DF /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				21112FD22612D8D200B920DF /* MiMainViewController.h */,
+				21112FD32612D8D200B920DF /* MiMainViewController.m */,
+				21112FE52612FC8800B920DF /* MiNavigationController.h */,
+				21112FE62612FC8800B920DF /* MiNavigationController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		21112FDB2612D90300B920DF /* View */ = {
+			isa = PBXGroup;
+			children = (
+				21112FDC2612D92000B920DF /* MiLeftManuView.h */,
+				21112FDD2612D92000B920DF /* MiLeftManuView.m */,
+				57D7B5CF261B4F2D00C4E9E5 /* MiMenuButton.h */,
+				57D7B5D0261B4F2D00C4E9E5 /* MiMenuButton.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		21A82AA325DDF8F9007B878C /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				21112FD02612D87100B920DF /* Main */,
 				21A82AA425DDF8F9007B878C /* Home */,
 				21A82AB425DDF8F9007B878C /* Other */,
 				21A82ABB25DDF8F9007B878C /* Detail */,
@@ -647,6 +691,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				57D7B5D1261B4F2D00C4E9E5 /* MiMenuButton.m in Sources */,
 				21A82AC525DDF8F9007B878C /* MiRecommendCell.m in Sources */,
 				21C1840225DE5F91004BD4DE /* MiSelectButton.m in Sources */,
 				21A82AC825DDF8F9007B878C /* UIColor+MiColor.m in Sources */,
@@ -658,14 +703,17 @@
 				21E9DFAD25EE351400B50852 /* MiDetailRnmdTableHeadView.m in Sources */,
 				21A82AC225DDF8F9007B878C /* HomeViewController.m in Sources */,
 				579FD1F025F31FE600E760D7 /* MiRmdTextCell.m in Sources */,
+				21112FDE2612D92000B920DF /* MiLeftManuView.m in Sources */,
 				21A82ACA25DDF8F9007B878C /* AppDelegate.m in Sources */,
 				21E9DFD225F0883100B50852 /* MiRmdCellModel.m in Sources */,
 				21A82AC625DDF8F9007B878C /* MiHomeHeadView.m in Sources */,
 				21A82AC925DDF8F9007B878C /* main.m in Sources */,
 				21A82AC425DDF8F9007B878C /* MiHomeRcmdModel.m in Sources */,
+				21112FE72612FC8800B920DF /* MiNavigationController.m in Sources */,
 				21E9DFCC25EF78F700B50852 /* MiDetailModel.m in Sources */,
 				579FD1F625F6E49100E760D7 /* MiRmdPicCell.m in Sources */,
 				21A82ACB25DDF8F9007B878C /* MiDetailViewController.m in Sources */,
+				21112FD42612D8D200B920DF /* MiMainViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

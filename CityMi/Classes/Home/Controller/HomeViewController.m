@@ -141,4 +141,10 @@
 {
     return MiHeadViewHeight;
 }
+
+// 隐藏导航栏
+
+- (void)viewWillAppear:(BOOL)animated {
+    [self.navigationController setNavigationBarHidden:YES animated:NO];
+}
 @end

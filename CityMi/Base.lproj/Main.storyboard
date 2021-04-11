@@ -7,10 +7,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Home View Controller-->
+        <!--Mi Main View Controller-->
         <scene sceneID="Gq3-XU-qpX">
             <objects>
-                <viewController id="c80-by-hv4" customClass="HomeViewController" sceneMemberID="viewController">
+                <viewController id="c80-by-hv4" customClass="MiMainViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="e3N-u9-7RQ">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

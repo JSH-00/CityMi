@@ -6,6 +6,7 @@
 //
 
 #import "AppDelegate.h"
+#import "MiMainViewController.h"
 #import "HomeViewController.h"
 @interface AppDelegate ()
 
@@ -18,7 +19,7 @@
     // Override point for customization after application launch.
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
 
-    HomeViewController *vc1 = [HomeViewController new];
+    MiMainViewController *vc1 = [MiMainViewController new];
 //     DetailViewController *vc5 = [DetailViewController new];
 //     SDWebImageViewController *vc6 = [SDWebImageViewController new];
 //     MyCollectionViewController *vc7 = [MyCollectionViewController new];
