@@ -18,10 +18,9 @@
 }
 
 + (instancetype)cellWithTableView:(UITableView *)tableView rmdCellModel:(MiRmdCellModel *)rmdCellModel {
-    static NSString *identifier = @"rmdTextcell";
-    MiRmdTextCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
-    if (cell == nil) {
-        cell = [[MiRmdTextCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:identifier];
+    MiRmdTextCell *cell = [tableView dequeueReusableCellWithIdentifier:RmdTextCellIdentifier];
+    if (!cell) {
+        cell = [[MiRmdTextCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:RmdTextCellIdentifier];
         [cell setUIWithModel:rmdCellModel];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }

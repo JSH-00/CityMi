@@ -20,4 +20,9 @@
 #define MiHomeCellHeight 210.0
 //推荐headView的高度
 #define MiHeadViewHeight 60.0
+//定义注册的 cell Identifier
+#define InfoCellIdentifier @"infoCell"
+#define RmdTextCellIdentifier @"rmdTextCell"
+#define RmdPicCellIdentifier @"rmdPicCell"
+
 #endif /* PrefixHeader_pch */

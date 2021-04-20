@@ -6,6 +6,7 @@
 //
 
 #import "MiInfoCell.h"
+#define InfoCellIdentifier @"infoCell"
 @interface MiInfoCell ()
 @property (nonatomic, strong) UILabel *titleLabel;
 @property (nonatomic, strong) UILabel *subTitleLabel;
@@ -18,10 +19,9 @@
 }
 
 + (instancetype)cellWithTableView:(UITableView *)tableView infoCellModel:(MiInfoModel *)infoCellModel {
-    static NSString *identifier = @"infoCell";
-    MiInfoCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
-    if (cell == nil) {
-        cell = [[MiInfoCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:identifier];
+    MiInfoCell *cell = [tableView dequeueReusableCellWithIdentifier:InfoCellIdentifier];
+    if (!cell) {
+        cell = [[MiInfoCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:InfoCellIdentifier];
         [cell setUIWithModel:infoCellModel];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
@@ -33,9 +33,7 @@
     _titleLabel = [[UILabel alloc]init];
     [self.contentView addSubview:_titleLabel];
     [_titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.mas_top).with.offset(20);
-        make.left.equalTo(self.mas_left).with.offset(20);
-        make.right.equalTo(self.mas_right).with.offset(-20);
+        make.top.left.right.equalTo(self).with.offset(20);
     }];
     _titleLabel.text = model.title;
     _titleLabel.lineBreakMode = NSLineBreakByWordWrapping;

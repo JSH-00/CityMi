@@ -18,10 +18,9 @@
 }
 
 + (instancetype)cellWithTableView:(UITableView *)tableView rmdCellModel:(MiRmdCellModel *)rmdCellModel {
-    static NSString *identifier = @"rmdPicCell";
-    MiRmdPicCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
-    if (cell == nil) {
-        cell = [[MiRmdPicCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:identifier];
+    MiRmdPicCell *cell = [tableView dequeueReusableCellWithIdentifier:RmdPicCellIdentifier];
+    if (!cell) {
+        cell = [[MiRmdPicCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:RmdPicCellIdentifier];
         [cell setUIWithModel:rmdCellModel];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
