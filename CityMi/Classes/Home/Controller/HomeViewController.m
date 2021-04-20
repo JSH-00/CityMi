@@ -10,12 +10,14 @@
 #import "MiHomeHeadView.h"
 #import "MiHomeCellModel.h"
 #import "MiHomeRcmdModel.h"
+#import "MiDetailViewController.h"
 #define recommendCellID @"recommendCell"
 @interface HomeViewController () <UITableViewDataSource, UITableViewDelegate>
 @property (nonatomic, weak) UISegmentedControl *titleView;
 //推荐View
 @property (nonatomic, strong) UITableView *rmedView;
 @property (nonatomic, strong) NSMutableArray *homeDatas;
+@property (nonatomic, strong) NSMutableArray *testDatas;
 @property (nonatomic, strong) UIImageView *nearImageView;
 @end
 
@@ -23,12 +25,22 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-  
+
+//    self.navigationController = [[UINavigationController alloc]init];
     //设置导航条
     [self setUpNavigationItem];
     
     //初始化UI
     [self setUpUI];
+//    NSMutableArray *a;
+//    self.testDatas[2] = {
+//        {-1, -2}
+//    };
+//    
+//    if (!self.testDatas || sizeof(a)/sizeof(a[0])) {
+//        printf("\nYES\n")
+//    }
+    
 }
 
 - (void)setUpNavigationItem
@@ -60,11 +72,17 @@
 - (void)setUpUI {
     //设置背景色
     [self.view setBackgroundColor:MiColor(51, 52, 53)];
-    UITableView *tableV = [[UITableView alloc] initWithFrame:CGRectMake(0, 95, MiAppWidth, MiAppHeight - 95) style:UITableViewStylePlain];
-    self.rmedView = tableV;
+    self.rmedView = [[UITableView alloc] init];
     self.rmedView.delegate = self;
     self.rmedView.dataSource = self;
     [self.view insertSubview:self.rmedView belowSubview:self.titleView];
+    [self.rmedView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.view.mas_left).with.offset(0);
+        make.top.equalTo(self.view.mas_top).with.offset(95);
+        make.width.equalTo(@MiAppWidth);
+        make.height.equalTo(@(MiAppHeight - 95));
+    }];
+    
     self.rmedView.backgroundColor = self.view.backgroundColor;
     
     self.nearImageView = [[UIImageView alloc] initWithFrame:self.view.bounds];
@@ -73,7 +91,7 @@
 }
 
 - (NSMutableArray *)homeDatas {
-    if (_homeDatas == nil) {
+    if (!_homeDatas) {
         _homeDatas = [[NSMutableArray alloc]init];
         NSArray *tmpArr = [[NSArray alloc] initWithContentsOfFile:[[NSBundle mainBundle]pathForResource:@"HomeDatas" ofType:@"plist"]];
         for (NSDictionary *dict in tmpArr) {
@@ -109,7 +127,7 @@
 // 加载cell
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     MiRecommendCell *cell = [tableView dequeueReusableCellWithIdentifier:recommendCellID];
-    if (cell == nil) {
+    if (!cell) {
         cell = [[MiRecommendCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:recommendCellID];
     }
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
@@ -118,9 +136,16 @@
     [cell setCellInfo:model];
     return cell;
 }
+
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return MiHomeCellHeight;
+}
+
+// cell点击跳转
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    MiDetailViewController *detailVC = [[MiDetailViewController alloc]init];
+    [self.navigationController pushViewController:detailVC animated:YES];
 }
 
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {

@@ -6,6 +6,8 @@ target 'CityMi' do
   use_frameworks!
   pod "Masonry"
   pod "SDWebImage"
+  pod 'AMap2DMap'
+  pod 'AMapSearch'
   # Pods for CityMi
 
   target 'CityMiTests' do

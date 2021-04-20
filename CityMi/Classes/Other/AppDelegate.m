@@ -6,7 +6,7 @@
 //
 
 #import "AppDelegate.h"
-
+#import "HomeViewController.h"
 @interface AppDelegate ()
 
 @end
@@ -16,6 +16,19 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
+
+    HomeViewController *vc1 = [HomeViewController new];
+//     DetailViewController *vc5 = [DetailViewController new];
+//     SDWebImageViewController *vc6 = [SDWebImageViewController new];
+//     MyCollectionViewController *vc7 = [MyCollectionViewController new];
+
+     UINavigationController *vc1_NA = [[UINavigationController alloc] initWithRootViewController:vc1];
+
+ //    UINavigationController *vc_to_pg = [[UINavigationController alloc]initWithRootViewController:vc2];
+
+     self.window.rootViewController = vc1_NA;
+     [self.window makeKeyAndVisible];
     return YES;
 }
 - (void)applicationWillResignActive:(UIApplication *)application {
