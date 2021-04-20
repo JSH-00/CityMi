@@ -81,7 +81,7 @@ typedef NS_ENUM(NSInteger, RowType) {
 - (NSMutableArray *)rmdDatas {
     if (!_rmdDatas) {
         _rmdDatas = [NSMutableArray array];
-        if (!self.details.article_list || sizeof(self.details.article_list)/sizeof(self.details.article_list[0]) <= 0) return _rmdDatas;
+        if (!self.details.article_list || self.details.article_list.count <= 0) return _rmdDatas;
         NSMutableArray *tmp = [NSMutableArray array];
         tmp = self.details.article_list[0][@"newcontent"];
         for (NSDictionary *dict in tmp) {

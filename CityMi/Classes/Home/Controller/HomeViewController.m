@@ -17,6 +17,7 @@
 //推荐View
 @property (nonatomic, strong) UITableView *rmedView;
 @property (nonatomic, strong) NSMutableArray *homeDatas;
+@property (nonatomic, strong) NSMutableArray *testDatas;
 @property (nonatomic, strong) UIImageView *nearImageView;
 @end
 
@@ -31,6 +32,15 @@
     
     //初始化UI
     [self setUpUI];
+//    NSMutableArray *a;
+//    self.testDatas[2] = {
+//        {-1, -2}
+//    };
+//    
+//    if (!self.testDatas || sizeof(a)/sizeof(a[0])) {
+//        printf("\nYES\n")
+//    }
+    
 }
 
 - (void)setUpNavigationItem
