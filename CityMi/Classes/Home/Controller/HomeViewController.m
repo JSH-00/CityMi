@@ -38,9 +38,8 @@
     //设置导航条titleView
     UISegmentedControl *topTitle = [[UISegmentedControl alloc]initWithItems:@[@"推荐", @"附近"]];
     self.titleView = topTitle;
-    topTitle.frame = CGRectMake(self.view.bounds.size.width * 0.25, self.view.safeAreaInsets.top +44, self.view.bounds.size.width * 0.5, 30);
+    topTitle.frame = CGRectMake(0, 0, self.view.bounds.size.width * 0.5, 30);
     [topTitle setBackgroundColor:MiGolbalGreen];
-    [self.view addSubview:topTitle];
     
     // 设置文字选中样式
     NSMutableDictionary *attDicSelected = [NSMutableDictionary dictionary];
@@ -57,6 +56,8 @@
      // 事件
      topTitle.selectedSegmentIndex = 0; // 默认光标所在位置
      [topTitle addTarget:self action:@selector(titleViewChange:) forControlEvents:UIControlEventValueChanged];
+    
+    self.navigationItem.titleView = self.titleView;
 }
 
 - (void)setUpUI {
@@ -145,6 +146,9 @@
 // 隐藏导航栏
 
 - (void)viewWillAppear:(BOOL)animated {
-    [self.navigationController setNavigationBarHidden:YES animated:NO];
+    [self.navigationController setNavigationBarHidden:NO animated:NO];
+    // 添加绿色背景图片
+    [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"recomend_btn_gone"] forBarMetrics:UIBarMetricsDefault];
+    [super viewWillAppear:animated];
 }
 @end

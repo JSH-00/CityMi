@@ -12,6 +12,10 @@
 // You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
 #define MiColor(r, g, b) [UIColor colorWithRed:r/255.0f green:g/255.0f blue:b/255.0f alpha:1]
 #define MiGolbalGreen MiColor(33, 197, 180)
+//抽屉顶部的距离
+#define MiScaleTopMargin 35
+//抽屉拉出来右边剩余比例
+#define MiZoomScaleRight 0.14
 //app的高度
 #define MiAppHeight ([UIScreen mainScreen].bounds.size.height)
 //app的宽度
