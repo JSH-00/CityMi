@@ -7,9 +7,9 @@
 /* 由于 MiDetailViewController 页面可重用，所以单独放在 Detail 文件夹下。
  */
 // 顶部scrollHeadView 的高度
-static const CGFloat ScrollHeadViewHeight = 250;
+#define ScrollHeadViewHeight 250
 //选择View的高度
-static const CGFloat SelectViewHeight = 45;
+#define SelectViewHeight 45
 #import "MiDetailViewController.h"
 #import "MiScrollHeadView.h"
 #import "MiSelectView.h"
@@ -22,6 +22,12 @@ static const CGFloat SelectViewHeight = 45;
 #import "MiInfoCell.h"
 #import <AMapFoundationKit/AMapFoundationKit.h>
 #import <MAMapKit/MAMapKit.h>
+typedef NS_ENUM(NSInteger, RowType) {
+    MapRow = 0,
+    InfoFirstRow,
+    InfoSecondRow,
+    TeleRow
+};
 @interface MiDetailViewController () <MiSelectViewDelegate, UITableViewDelegate, UITableViewDataSource, MAMapViewDelegate>
 /** 记录scrollView上次偏移X的距离，没有初始化 */
 @property (nonatomic, assign) CGFloat scrollX;
@@ -63,7 +69,7 @@ static const CGFloat SelectViewHeight = 45;
 
 // 懒加载数据
 - (MiDetailModel *)details {
-    if (_details == nil) {
+    if (!_details) {
         NSString *path = [[NSBundle mainBundle] pathForResource:@"detailJson" ofType:nil];
         NSData *data = [NSData dataWithContentsOfFile:path];
         NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
@@ -73,8 +79,9 @@ static const CGFloat SelectViewHeight = 45;
 }
 
 - (NSMutableArray *)rmdDatas {
-    if (_rmdDatas == nil) {
+    if (!_rmdDatas) {
         _rmdDatas = [NSMutableArray array];
+        if (!self.details.article_list || self.details.article_list.count <= 0) return _rmdDatas;
         NSMutableArray *tmp = [NSMutableArray array];
         tmp = self.details.article_list[0][@"newcontent"];
         for (NSDictionary *dict in tmp) {
@@ -86,7 +93,7 @@ static const CGFloat SelectViewHeight = 45;
 }
 
 - (NSMutableArray *)infoDatas {
-    if (_infoDatas == nil) {
+    if (!_infoDatas) {
         _infoDatas = [NSMutableArray array];
         NSArray *arr = [NSArray arrayWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"infoDatas" ofType:@"plist"]];
         for (NSDictionary *dict in arr) {
@@ -144,17 +151,36 @@ static const CGFloat SelectViewHeight = 45;
     NSArray *imagrArr = @[@"https://ghproxy.com/https://raw.githubusercontent.com/lingyia/APIIMG/master/scenery/717.jpg", @"https://ghproxy.com/https://raw.githubusercontent.com/lingyia/APIIMG/master/scenery/718.jpg", @"https://ghproxy.com/https://raw.githubusercontent.com/lingyia/APIIMG/master/scenery/719.jpg"];
     self.topScrollView = [MiScrollHeadView scrollHeadViewWithImages:imagrArr];
     self.topScrollView.backgroundColor = [UIColor whiteColor];
-    [self.topScrollView setFrame:CGRectMake(0, 0, MiAppWidth, ScrollHeadViewHeight)];
 
-    self.topView = [[UIView alloc]initWithFrame:CGRectMake(0, -48, MiAppWidth, ScrollHeadViewHeight)];
+    self.topView = [[UIView alloc]init];
     self.topView.backgroundColor = [UIColor redColor];
-    [self.topView addSubview:self.topScrollView];
     [self.view addSubview:self.topView];
+    [self.topView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.view.mas_left);
+        make.top.equalTo(self.view.mas_top);
+        make.width.equalTo(@MiAppWidth);
+        make.height.equalTo(@ScrollHeadViewHeight);
+    }];
+    
+    [self.topView addSubview:self.topScrollView];
+    [self.topScrollView setFrame:CGRectMake(0, 0, MiAppWidth, ScrollHeadViewHeight)];
+    [self.topScrollView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.topView.mas_left);
+        make.top.equalTo(self.topView.mas_top);
+        make.width.equalTo(@MiAppWidth);
+        make.height.equalTo(@ScrollHeadViewHeight);
+    }];
 
     // 切换推荐/信息的 view
-    self.selectView = [[MiSelectView alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(self.topScrollView.frame), MiAppWidth, SelectViewHeight)];
+    self.selectView = [[MiSelectView alloc]init];
     self.selectView.delegate = self;
     [self.view addSubview:self.selectView];
+    [self.selectView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.view.mas_left);
+        make.top.equalTo(self.view.mas_top).with.offset(CGRectGetMaxY(self.topScrollView.frame));
+        make.width.equalTo(@MiAppWidth);
+        make.height.equalTo(@SelectViewHeight);
+    }];
 
     //添加推荐 tableView 的 HeadView
     self.tableHeadView = [[MiDetailRnmdTableHeadView alloc]initWithFrame:CGRectMake(0, 0, MiAppWidth, 60)];
@@ -183,7 +209,7 @@ static const CGFloat SelectViewHeight = 45;
     if ([annotation isKindOfClass:[MAPointAnnotation class]]) {
         static NSString *reuseIndetifier = @"annotationReuseIndetifier";
         MAAnnotationView *annotationView = (MAAnnotationView *)[mapView dequeueReusableAnnotationViewWithIdentifier:reuseIndetifier];
-        if (annotationView == nil) {
+        if (!annotationView) {
             annotationView = [[MAAnnotationView alloc]initWithAnnotation:annotation reuseIdentifier:reuseIndetifier];
         }
         annotationView.image = [UIImage imageNamed:@"map_activity"];
@@ -235,9 +261,9 @@ static const CGFloat SelectViewHeight = 45;
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     if (tableView == self.rmdTableView) {
         return;
-    } else if (indexPath.row == 0) {
+    } else if (indexPath.row == MapRow) {
         // 跳转到地图页面
-    } else if (indexPath.row == 3) {
+    } else if (indexPath.row == TeleRow) {
         MiInfoModel *model = self.infoDatas[indexPath.row];
         // 打电话
         self.actionController = [UIAlertController alertControllerWithTitle:@"选择要播的电话" message:nil preferredStyle:UIAlertControllerStyleActionSheet];

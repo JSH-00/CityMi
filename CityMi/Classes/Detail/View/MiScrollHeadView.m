@@ -19,8 +19,8 @@
     return headView;
 }
 
-- (instancetype)initWithFrame:(CGRect)frame {
-    if (self = [super initWithFrame:frame]) {
+- (instancetype)init {
+    if (self = [super init]) {
         self.pagingEnabled = YES; // 当滚动时，只在视图的倍数处停止
         self.showsHorizontalScrollIndicator = NO; // 横向指示器滚筒条
         self.delegate = self;
@@ -35,8 +35,12 @@
     CGFloat y = self.bounds.size.height - 30;
     CGFloat w = self.bounds.size.width;
     CGFloat h = 25;
-    self.pageView.frame = CGRectMake(x, y, w, h);
+    UIEdgeInsets padding = UIEdgeInsetsMake(y, x, w, h);
     [self.superview insertSubview:self.pageView aboveSubview:self];
+    [self.pageView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.equalTo(self.superview).with.insets(padding);
+    }];
+    
     
     NSInteger count = self.images.count;
     int i = 0;

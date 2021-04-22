@@ -18,8 +18,8 @@
 @property (nonatomic, weak) MiSelectButton *nowSelectedBtn;
 @end
 @implementation MiSelectView
-- (instancetype)initWithFrame:(CGRect)frame {
-    if (self = [super initWithFrame:frame]) {
+- (instancetype)init {
+    if (self = [super init]) {
         [self setUp];
     }
     return self;
