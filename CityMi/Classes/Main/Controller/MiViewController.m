@@ -18,7 +18,6 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.navigationItem.leftBarButtonItem = [UIBarButtonItem initWithNormalImage:@"artcleList_btn_info" target:self action:@selector(leftClick)];
-//    self.view.backgroundColor = MiColor(239, 239, 244);
 }
 
 - (void)leftClick {

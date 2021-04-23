@@ -86,7 +86,7 @@
     
     self.rmedView.backgroundColor = self.view.backgroundColor;
     
-    self.nearImageView = [[UIImageView alloc] initWithFrame:self.view.bounds];
+    self.nearImageView = [[UIImageView alloc] initWithFrame:CGRectMake(self.view.bounds.origin.x, self.view.bounds.origin.y + 90, self.view.bounds.size.width, self.view.bounds.size.height - 90)];
     [self.nearImageView setImage:[UIImage imageNamed:@"MiBG"]];
     [self.nearImageView setContentMode:UIViewContentModeScaleAspectFill];
 }
@@ -110,6 +110,9 @@
         //显示推荐View
         [self.view insertSubview:self.rmedView belowSubview:self.titleView];
         [self.nearImageView removeFromSuperview];
+        [self.rmedView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(self.view.mas_top).with.offset(95); // 解决 removeFromSuperview 再 add，约束丢失的问题
+        }];
     } else {
         //显示nearView
         [self.view insertSubview:self.nearImageView belowSubview:self.titleView];
