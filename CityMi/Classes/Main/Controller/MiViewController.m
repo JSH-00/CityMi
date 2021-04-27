@@ -24,7 +24,6 @@
     // 给整个 MiViewController 添加遮盖按钮，拦截用户操作，点击后隐藏左侧抽屉
     self.coverBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     self.coverBtn.frame = self.navigationController.view.bounds; // 覆盖包括 navigationController 的部分
-    self.coverBtn.backgroundColor = [UIColor redColor];
     [self.coverBtn addTarget:self action:@selector(coverClick) forControlEvents:UIControlEventTouchUpInside];
     [self.navigationController.view addSubview:self.coverBtn];
     

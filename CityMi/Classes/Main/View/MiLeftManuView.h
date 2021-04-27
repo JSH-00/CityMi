@@ -9,8 +9,10 @@
 
 NS_ASSUME_NONNULL_BEGIN
 typedef NS_ENUM(NSInteger, MiLeftButtonType) {
-    MiLeftButtonTypeHome = 0
-    
+    MiLeftButtonTypeHome = 0,
+    MiLeftButtonTypeFound,
+    MiLeftButtonTypeMessage = 5,
+    MiLeftButtonTypeSetting
 };
 
 @protocol MiLeftMenuViewDelegate <NSObject>
