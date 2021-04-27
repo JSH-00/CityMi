@@ -7,7 +7,10 @@
 
 #import "MiMainViewController.h"
 #import "MiLeftManuView.h"
-#import "HomeViewController.h"
+#import "MiHomeViewController.h"
+#import "MiFoundViewController.h"
+#import "MiMessageViewController.h"
+#import "MiSettingViewController.h"
 #import "MiNavigationController.h"
 @interface MiMainViewController ()<MiLeftMenuViewDelegate>
 
@@ -19,7 +22,7 @@
     [super viewDidLoad];
     [self.navigationController setNavigationBarHidden:YES animated:NO];
     // Do any additional setup after loading the view.
-    NSArray *classNames = @[@"HomeViewController"];
+    NSArray *classNames = @[@"MiHomeViewController",@"MiFoundViewController",@"",@"",@"",@"MiMessageViewController",@"MiSettingViewController"];
     for (NSString *className in classNames) {
         UIViewController *vc = (UIViewController *)[[NSClassFromString(className) alloc]init];
         MiNavigationController *nc = [[MiNavigationController alloc]initWithRootViewController:vc];

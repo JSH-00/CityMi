@@ -7,7 +7,7 @@
 
 #import "AppDelegate.h"
 #import "MiMainViewController.h"
-#import "HomeViewController.h"
+#import "MiHomeViewController.h"
 @interface AppDelegate ()
 
 @end

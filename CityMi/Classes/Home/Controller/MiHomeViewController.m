@@ -5,14 +5,14 @@
 //  Created by Billie Ji on 2021/2/1.
 //
 
-#import "HomeViewController.h"
+#import "MiHomeViewController.h"
 #import "MiRecommendCell.h"
 #import "MiHomeHeadView.h"
 #import "MiHomeCellModel.h"
 #import "MiHomeRcmdModel.h"
 #import "MiDetailViewController.h"
 #define recommendCellID @"recommendCell"
-@interface HomeViewController () <UITableViewDataSource, UITableViewDelegate>
+@interface MiHomeViewController () <UITableViewDataSource, UITableViewDelegate>
 @property (nonatomic, weak) UISegmentedControl *titleView;
 //推荐View
 @property (nonatomic, strong) UITableView *rmedView;
@@ -21,7 +21,7 @@
 @property (nonatomic, strong) UIImageView *nearImageView;
 @end
 
-@implementation HomeViewController
+@implementation MiHomeViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];

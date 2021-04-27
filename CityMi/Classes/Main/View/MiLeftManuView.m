@@ -81,7 +81,6 @@
         make.left.equalTo(self.mas_left);
         make.width.equalTo(self.mas_width);
     }];
-    
     self.settingBtn.tag = MiLeftButtonTypeSetting;
     [self.settingBtn setImage:[UIImage imageNamed:@"setting"] forState:UIControlStateNormal];
     [self.settingBtn setImage:[UIImage imageNamed:@"settingSelected"] forState:UIControlStateHighlighted];
