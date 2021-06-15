@@ -22,6 +22,7 @@
 #import "MiInfoCell.h"
 #import <AMapFoundationKit/AMapFoundationKit.h>
 #import <MAMapKit/MAMapKit.h>
+#import <CoreLocation/CoreLocation.h>
 typedef NS_ENUM(NSInteger, RowType) {
     MapRow = 0,
     InfoFirstRow,
@@ -62,7 +63,9 @@ typedef NS_ENUM(NSInteger, RowType) {
 /** 地图ivew */
 @property (nonatomic, strong) MAMapView *mapView;
 /** 电话弹窗 */
-@property (nonatomic, strong) UIAlertController *actionController;
+@property (nonatomic, strong) UIAlertController *teleActionController;
+/** 地图弹窗 */
+@property (nonatomic, strong) UIAlertController *mapActionController;
 @end
 
 @implementation MiDetailViewController
@@ -262,30 +265,73 @@ typedef NS_ENUM(NSInteger, RowType) {
     if (tableView == self.rmdTableView) {
         return;
     } else if (indexPath.row == MapRow) {
-        // 跳转到地图页面
+        [self jumpToMap];
     } else if (indexPath.row == TeleRow) {
         MiInfoModel *model = self.infoDatas[indexPath.row];
         // 打电话
-        self.actionController = [UIAlertController alertControllerWithTitle:@"选择要播的电话" message:nil preferredStyle:UIAlertControllerStyleActionSheet];
+        self.teleActionController = [UIAlertController alertControllerWithTitle:@"选择要播的电话" message:nil preferredStyle:UIAlertControllerStyleActionSheet];
         UIAlertAction * phoneNum1 = [UIAlertAction actionWithTitle:model.title style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
             // 添加跳转到电话
+            [self jumpToPhone:model.title];
         }];
 
         UIAlertAction * phoneNum2 = [UIAlertAction actionWithTitle:model.subTitle style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
             // 添加跳转到电话
+            [self jumpToPhone:model.subTitle];
         }];
 
         UIAlertAction * cancel = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
-            [self.actionController dismissViewControllerAnimated:YES completion:nil];
+            [self.teleActionController dismissViewControllerAnimated:YES completion:nil];
         }];
 
-        [self.actionController addAction:phoneNum1];
-        [self.actionController addAction:phoneNum2];
-        [self.actionController addAction:cancel];
-        [self presentViewController:self.actionController animated:YES completion:nil];
+        [self.teleActionController addAction:phoneNum1];
+        [self.teleActionController addAction:phoneNum2];
+        [self.teleActionController addAction:cancel];
+        [self presentViewController:self.teleActionController animated:YES completion:nil];
     }
 }
 
+- (void)jumpToMap {
+    // 跳转到地图页面
+    self.mapActionController = [UIAlertController alertControllerWithTitle:@"选择跳转的地图" message:nil preferredStyle:UIAlertControllerStyleActionSheet];
+    UIAlertAction * phoneNum1 = [UIAlertAction actionWithTitle:@"苹果地图" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        // 添加跳转到苹果地图
+        
+    }];
+
+    UIAlertAction * phoneNum2 = [UIAlertAction actionWithTitle:@"高德地图" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        // 添加跳转到高德地图
+        // 路径规划 URL：iosamap://path?sourceApplication=applicationName&sid=BGVIS1&slat=39.92848272&slon=116.39560823&sname=A&did=BGVIS2&dlat=39.98848272&dlon=116.47560823&dname=B&dev=0&m=0&t=0
+//        NSString * urlString = [NSString stringWithFormat:@"iosamap://path?sourceApplication=%@&dlat=%@dlon=%@&dname=B&dev=0&m=0&t=0",@"CityMi", @30.26211, @120.17571];
+
+        NSString * urlString = [NSString stringWithFormat:@"iosamap://navi?sourceApplication=%@&backScheme=%@&lat=%@&lon=%@&dev=0&style=2",@"CityMi",@"MyCityMi", @30.26211, @120.17571];
+        if ([[UIApplication sharedApplication] respondsToSelector:@selector(openURL:options:completionHandler:)]) {
+            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:urlString] options:@{}
+                                     completionHandler:^(BOOL success) {
+                NSLog(@"Open 高德地图: %d",success);
+            }];
+        } else {
+            BOOL success = [[UIApplication sharedApplication] openURL:[NSURL URLWithString:urlString]];
+            NSLog(@"Open 高德地图: %d",success);
+        }
+    }];
+
+    
+    UIAlertAction * cancel = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+        [self.mapActionController dismissViewControllerAnimated:YES completion:nil];
+    }];
+
+    [self.mapActionController addAction:phoneNum1];
+    [self.mapActionController addAction:phoneNum2];
+    [self.mapActionController addAction:cancel];
+    [self presentViewController:self.mapActionController animated:YES completion:nil];
+    
+
+}
+- (void)jumpToPhone:(NSString *)phoneNum {
+    // 跳转到拨电话
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"tel://%@",phoneNum]] options:@{} completionHandler:nil];
+}
 #pragma mark - 自定义导航条
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
