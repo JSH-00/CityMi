@@ -432,15 +432,6 @@ typedef NS_ENUM(NSInteger, RowType) {
         }
         self.topScrollView.naviView.alpha = alphaScaleShow;
 
-        // 让 selectView 随着 banner 移动
-        if (offsetY >= -(90 + SelectViewHeight)) {
-            // 悬浮于 naviView 下面
-            self.selectView.frame = CGRectMake(0, 90, MiAppWidth, SelectViewHeight);
-        } else {
-            // 和 topView 一起滑动
-            self.selectView.frame = CGRectMake(0, CGRectGetMaxY(self.topView.frame), MiAppWidth, SelectViewHeight);
-        }
-
         // 下拉时，让头部变形
         CGFloat scaleTopView = 1 - (offsetY + SelectViewHeight + ScrollHeadViewHeight) / 100;
         scaleTopView = scaleTopView > 1 ? scaleTopView : 1;
@@ -448,6 +439,20 @@ typedef NS_ENUM(NSInteger, RowType) {
         CGAffineTransform transform = CGAffineTransformMakeScale(scaleTopView, scaleTopView);
         CGFloat ty = (scaleTopView - 1) * ScrollHeadViewHeight;
         self.topView.transform = CGAffineTransformTranslate(transform, 0, -ty * 0.2);
+        
+        if (offsetY >= -(90 + SelectViewHeight)) {
+            // 悬浮于 naviView 下面
+            self.selectView.frame = CGRectMake(0, 90, MiAppWidth, SelectViewHeight);
+        } else {
+            // 和 topView 一起滑动
+            if (scaleTopView > 1){ //解决下拉时 selectView 抽搐的问题
+                headRect.origin.y += seleOffsetY;
+                self.selectView.frame = CGRectMake(0, CGRectGetMaxY(headRect) - 20, MiAppWidth, SelectViewHeight);
+            }
+            else {
+                self.selectView.frame = CGRectMake(0, CGRectGetMaxY(self.topView.frame) - 20, MiAppWidth, SelectViewHeight);
+            }
+        }
 
     } else { // 说明是backgroundScrollView在横向滚动
         // TODO：滑动到下面后，应该禁止横行滑动
